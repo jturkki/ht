@@ -1,0 +1,10 @@
+package fxRetriitti;
+
+/**
+ * @author jyrit
+ * @version 12.6.2022
+ *
+ */
+public class AloitusViewGUIController {
+      // TODO
+}
