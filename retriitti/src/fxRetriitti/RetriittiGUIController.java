@@ -105,7 +105,9 @@ public class RetriittiGUIController {
    @FXML private void handleTulosta() {
        tulosta();
    }
-    
+  
+//====================================================================   
+   
    /**
     * Tietojen tallennus
     */
