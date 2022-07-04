@@ -131,26 +131,9 @@ public class RetriittiGUIController {
     }
     
     
-    /**
-     * lukee tiedostosta retriitin tiedot
-     * @param nimi retriitin nimi
-     */
-    protected void lueTiedosto(String nimi) {
-        retriitinNimi = nimi;
-      //  setTitle("Retriitti - " + retriitinNimi);
-        String virhe = "Ei osata vielä lukea " + retriitinNimi;        // TODO tiedoston luku
-       // if (virhe != null)
-            Dialogs.showMessageDialog(virhe);
-    }
+   private void avaa() {
+       Dialogs.showMessageDialog("tämä jää pois");
+   }
     
-    /**
-     * avaa tiedoston
-     * @return false jos ei nimeä, true jos avataan tiedosto
-     */
-    public boolean avaa() {
-        String uusinimi = AloitusViewGUIController.kysyNimi(null, retriitinNimi);
-        if (uusinimi == null) return false;
-        lueTiedosto(uusinimi);
-        return true;
-    }
+  
 }
