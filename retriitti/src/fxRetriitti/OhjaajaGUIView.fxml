@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<BorderPane prefWidth="250.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="fxRetriitti.OhjaajaGUIController">
+<BorderPane prefWidth="250.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
    <top>
       <Label text="Ohjaaja" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -67,12 +66,12 @@
    <bottom>
       <HBox prefHeight="55.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Tallenna">
+            <Button mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Peru">
+            <Button mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peru">
                <HBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </HBox.margin>

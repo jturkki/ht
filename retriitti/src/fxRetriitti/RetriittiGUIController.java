@@ -1,6 +1,7 @@
 package fxRetriitti;
 
 import fi.jyu.mit.fxgui.Dialogs;
+import fi.jyu.mit.fxgui.ModalController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 
@@ -16,7 +17,7 @@ public class RetriittiGUIController {
      * Käsitellään uuden jäsenen lisääminen
      */
     @FXML private void handleUusiOsallistuja() {
-        Dialogs.showMessageDialog("Ei osata vielä lisätä");
+        ModalController.showModal(RetriittiGUIController.class.getResource("OsallistujaGUIView.fxml"), "Osallistuja", null, "");
     }
     
     /**
@@ -47,7 +48,7 @@ public class RetriittiGUIController {
      * Uuden workshopin lisääminen
      */
     @FXML private void handleLisaaWorkshop() {
-        Dialogs.showMessageDialog("Uuden workshopin lisäys tästä");
+        ModalController.showModal(RetriittiGUIController.class.getResource("WorkshopGUIView.fxml"), "Workshop", null, "");
     }
     
     /**
@@ -61,7 +62,7 @@ public class RetriittiGUIController {
      * Ohjaajan muokkaus
      */
     @FXML private void handleMuokkaaOhjaaja() {
-        Dialogs.showMessageDialog("Ohjaajan muokkaus");
+        ModalController.showModal(RetriittiGUIController.class.getResource("OhjaajaGUIView.fxml"), "Ohjaaja", null, "");
     }
     
     /**
@@ -96,7 +97,7 @@ public class RetriittiGUIController {
     * Käsitellään Avaa-käsky 
     */
    @FXML private void handleAvaaTiedosto() {
-       Dialogs.showMessageDialog("Ei vaan osata vielä avata tiedostoa");;
+      avaa();
    }
    
    /**
@@ -107,6 +108,7 @@ public class RetriittiGUIController {
    }
   
 //====================================================================   
+   String retriitinNimi;
    
    /**
     * Tietojen tallennus
@@ -128,4 +130,27 @@ public class RetriittiGUIController {
         Dialogs.showMessageDialog("Tästä aukeaa oma tulostusikkuna");
     }
     
+    
+    /**
+     * lukee tiedostosta retriitin tiedot
+     * @param nimi retriitin nimi
+     */
+    protected void lueTiedosto(String nimi) {
+        retriitinNimi = nimi;
+      //  setTitle("Retriitti - " + retriitinNimi);
+        String virhe = "Ei osata vielä lukea " + retriitinNimi;        // TODO tiedoston luku
+       // if (virhe != null)
+            Dialogs.showMessageDialog(virhe);
+    }
+    
+    /**
+     * avaa tiedoston
+     * @return false jos ei nimeä, true jos avataan tiedosto
+     */
+    public boolean avaa() {
+        String uusinimi = AloitusViewGUIController.kysyNimi(null, retriitinNimi);
+        if (uusinimi == null) return false;
+        lueTiedosto(uusinimi);
+        return true;
+    }
 }

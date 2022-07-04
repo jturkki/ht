@@ -18,7 +18,7 @@ public class AloitusViewMain extends Application {
         try {
             FXMLLoader ldr = new FXMLLoader(getClass().getResource("AloitusViewGUIView.fxml"));
             final Pane root = ldr.load();
-            //final AloitusViewGUIController aloitusviewCtrl = (AloitusViewGUIController) ldr.getController();
+            // final AloitusViewGUIController aloitusviewCtrl = (AloitusViewGUIController) ldr.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("aloitusview.css").toExternalForm());
             primaryStage.setScene(scene);
@@ -30,7 +30,7 @@ public class AloitusViewMain extends Application {
     }
 
     /**
-     * @param args Ei k‰ytˆss‰
+     * @param args Ei k√§yt√∂ss√§
      */
     public static void main(String[] args) {
         launch(args);

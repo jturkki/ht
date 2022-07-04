@@ -18,7 +18,7 @@ public class OhjaajaMain extends Application {
         try {
             FXMLLoader ldr = new FXMLLoader(getClass().getResource("OhjaajaGUIView.fxml"));
             final Pane root = ldr.load();
-            //final OhjaajaGUIController ohjaajaCtrl = (OhjaajaGUIController) ldr.getController();
+            // final OhjaajaGUIController ohjaajaCtrl = (OhjaajaGUIController) ldr.getController();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("ohjaaja.css").toExternalForm());
             primaryStage.setScene(scene);
@@ -30,7 +30,7 @@ public class OhjaajaMain extends Application {
     }
 
     /**
-     * @param args Ei käytössä
+     * @param args Ei kï¿½ytï¿½ssï¿½
      */
     public static void main(String[] args) {
         launch(args);

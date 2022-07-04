@@ -1,0 +1,106 @@
+
+Osallistuja-luokka (Osallistuja)
+|---------------------------------------------------------------------------|
+| Luokan nimi: Osallistuja                             | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      |                    |
+| -tietää osallistujan kentät (nimet, hetu, puh. jne.) |                    |
+| - osaa tarkistaa tietyn kentän oikeellisuuden        |                    |
+| - osaa muuttaa 1|Kaali Heli|..| -merkkijonon         |                    |
+|   jäsenen tiedoiksi                                  |                    |
+| - osaa antaa merkkijonona i:n kentän tiedot          |                    |
+| - osaa laittaa merkkijonon i:nneksi kentäksi         |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+
+Workshop-luokka (Workshop)
+|---------------------------------------------------------------------------|
+| Luokan nimi: Workshop                                | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      |                    |
+| -tietää workshopin kentät                            |                    |
+| - osaa tarkistaa tietyn kentän oikeellisuuden        |                    |
+| - osaa muuttaa 2|Levitointi|..| -merkkijonon         |                    |
+|   workshopin tiedoiksi                               |                    |
+| - osaa antaa merkkijonona i:n kentän tiedot          |                    |
+| - osaa laittaa merkkijonon i:nneksi kentäksi         |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+Retriitti-luokka (Retriitti)
+|---------------------------------------------------------------------------|
+| Luokan nimi: Retriitti                               | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      | - Osallistuja      |
+| - huolehtii Osallistuja ja workshop - luokkien       | - Workshop         |
+|   välisestä yhteistyöstä ja välittää näitä tietoja   | - Osallistujat     |
+|   pyydettäessä                                       | - Workshopit       |
+| - lukee ja kirjoittaa retriitin tiedostoon           |                    |
+|   pyytämällä apua avustajiltaan                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+Osallistujat-luokka (Osallistujat)
+|---------------------------------------------------------------------------|
+| Luokan nimi: Osallistujat                            | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      | - Osallistuja      |
+| - pitää yllä varsinaista osallistujarekisteriä,      |                    |
+|   eli osaa lisätä ja poistaa osallistujan            |                    |
+| - lukee ja kirjoittaa osallistujat tiedostoon        |                    |
+| - osaa etsiä ja lajitella                            |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+Workshopit-luokka (Workshopit)
+|---------------------------------------------------------------------------|
+| Luokan nimi: Workshopit                              | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      | - Workshop         |
+| - pitää yllä varsinaista workshoprekisteriä,         |                    |
+|   eli osaa lisätä ja poistaa workshopin              |                    |
+| - lukee ja kirjoittaa workshopit tiedostoon          |                    |
+| - osaa etsiä ja lajitella                            |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+Näyttö-luokka (Naytto)
+|---------------------------------------------------------------------------|
+| Luokan nimi: Naytto                                  | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      | - Workshop         |
+| - hoitaa kaiken näyttöön tulevan tekstin             | - Retriitti        |
+| - hoitaa kaiken tiedon pyytämisen käyttäjältä        | - Osallistuja      |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
