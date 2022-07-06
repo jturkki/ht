@@ -24,7 +24,7 @@ Workshop-luokka (Workshop)
 |---------------------------------------------------------------------------|
 | Vastuualueet:                                        |                    |
 |                                                      |                    |
-| -tietää workshopin kentät                            |                    |
+| - tietää workshopin kentät                           |                    |
 | - osaa tarkistaa tietyn kentän oikeellisuuden        |                    |
 | - osaa muuttaa 2|Levitointi|..| -merkkijonon         |                    |
 |   workshopin tiedoiksi                               |                    |
@@ -45,10 +45,10 @@ Retriitti-luokka (Retriitti)
 | - huolehtii Osallistuja ja workshop - luokkien       | - Workshop         |
 |   välisestä yhteistyöstä ja välittää näitä tietoja   | - Osallistujat     |
 |   pyydettäessä                                       | - Workshopit       |
-| - lukee ja kirjoittaa retriitin tiedostoon           |                    |
-|   pyytämällä apua avustajiltaan                      |                    |
-|                                                      |                    |
-|                                                      |                    |
+| - lukee ja kirjoittaa retriitin tiedostoon           | - OsallistuuWork-  |
+|   pyytämällä apua avustajiltaan                      |   shoppiin         |
+|                                                      | - Osallistumiset-  |
+|                                                      |   Workshoppeihin   |
 |                                                      |                    |
 |                                                      |                    |
 |                                                      |                    |
@@ -99,6 +99,40 @@ Näyttö-luokka (Naytto)
 |                                                      |                    |
 |                                                      |                    |
 |                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+
+OsallistuuWorkshoppiin-luokka (OsallistuuWorkshoppiin)
+|---------------------------------------------------------------------------|
+| Luokan nimi: OsallistuuWorkshoppiin                  | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      | - Workshop         |
+| - tietää osallistujan id:n                           | - Osallistuja      |
+| - tietää workshopin id:n                             |                    |
+| - osaa antaa workshoppin id:n perusteella sen        |                    |
+|   osallistujien id:t                                 |                    |
+| - osaa antaa osallistujan id:n perusteella           |                    |
+|   antaa niiden workshoppien id:t                     |                    |
+|   joihin osallistuja osallistuu                      |                    |
+|                                                      |                    |
+|------------------------------------------------------|--------------------|
+
+OsallistumisetWorkshoppeihin-luokka (OsallistumisetWorkshoppeihin)
+|---------------------------------------------------------------------------|
+| Luokan nimi: OsallistumisetWorkshoppeihin            | Avustajat:         |
+|---------------------------------------------------------------------------|
+| Vastuualueet:                                        |                    |
+|                                                      | - Workshop         |
+| - pitää yllä varsinaista rekisteriä siitä,           | - Osallistuja      |
+|   mihin workshoppeihin osallistuja osallistuu.       | - OsallistuuWork-  |
+| - lukee ja kirjoittaa osallistumiset workshoppeihin  |   shoppiin         |
+|   tiedostoon                                         |                    |
+| - osaa etsiä ja lajitella                            |                    |
 |                                                      |                    |
 |                                                      |                    |
 |                                                      |                    |
