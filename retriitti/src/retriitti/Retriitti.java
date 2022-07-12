@@ -10,11 +10,12 @@ public class Retriitti {
     private final Osallistujat osallistujat = new Osallistujat();
     
     
+
     /**
      * Palautetaan retriitin osallistujien lukumäärä
      * @return osallistujien lukumäärä
      */
-    private int getOsallistujia() {
+    public int getOsallistujia() {
         return osallistujat.getLkm();
     }
     
@@ -25,7 +26,7 @@ public class Retriitti {
      * @return viite i:nteen osallistujaan
      * @throws IndexOutOfBoundsException jos i ei sallitulla alueella
      */
-    private Osallistuja annaOsallistuja(int i) throws IndexOutOfBoundsException {
+    public Osallistuja annaOsallistuja(int i) throws IndexOutOfBoundsException {
         return osallistujat.anna(i);
     }
     
@@ -35,7 +36,7 @@ public class Retriitti {
      * @param osallistuja joka lisätään
      * @throws SailoException jos tietorakenne täysi
      */
-    private void lisaa(Osallistuja osallistuja) throws SailoException {
+    public void lisaa(Osallistuja osallistuja) throws SailoException {
         this.osallistujat.lisaa(osallistuja);
     }
 

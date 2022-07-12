@@ -2,6 +2,7 @@ package fxRetriitti;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import retriitti.Retriitti;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +30,15 @@ public class RetriittiMain extends Application {
                 // Kutsutaan voikoSulkea-metodia
                 if ( !retriittiCtrl.voikoSulkea() ) event.consume(); 
             });
+            
+            Retriitti retriitti = new Retriitti();
+            retriittiCtrl.setRetriitti(retriitti);
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();
         }
+        
+
     }
 
     /**

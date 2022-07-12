@@ -76,7 +76,7 @@
                   <Label text="Osallistujat" BorderPane.alignment="CENTER" />
                </top>
                <center>
-                  <ListChooser rivit="Kaali Heli&#10;Muikku Make&#10;Naakka Aimo&#10;" BorderPane.alignment="CENTER" />
+                  <ListChooser fx:id = "chooserOsallistujat" rivit="Kaali Heli&#10;Muikku Make&#10;Naakka Aimo&#10;" BorderPane.alignment="CENTER" />
                </center>
                <bottom>
                   <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">

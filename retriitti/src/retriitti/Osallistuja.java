@@ -3,6 +3,8 @@ package retriitti;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import kanta.HetuTarkistus;
+
 import static kanta.HetuTarkistus.*;
 
 /**
@@ -52,7 +54,7 @@ public class Osallistuja {
      */
     public void asetaAkuA(String apuhetu) {
         etunimi = "Aku";
-        sukunimi = "Ankka";
+        sukunimi = "Ankka" + HetuTarkistus.rand(1, 100);
         hetu = apuhetu;
         katuosoite = "Paratiisitie 13";
         postiosoite = "00100 Ankkis";
@@ -97,6 +99,13 @@ public class Osallistuja {
      */
     public int getId() {
         return id;
+    }
+    
+    /**
+     * @return osallistujan nimi muodossa sukunimi etunimi
+     */
+    public String getNimi() {
+        return sukunimi + " " + etunimi;
     }
 
     /**

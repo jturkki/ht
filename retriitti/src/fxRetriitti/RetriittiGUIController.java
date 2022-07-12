@@ -1,9 +1,18 @@
 package fxRetriitti;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import fi.jyu.mit.fxgui.Dialogs;
+import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import retriitti.Osallistuja;
+import retriitti.Retriitti;
+import retriitti.SailoException;
 
 /**
  * Luokka käyttöliittymän tapahtumien hoitamiseksi
@@ -12,12 +21,25 @@ import javafx.fxml.FXML;
  * @version 11.6.2022
  *
  */
-public class RetriittiGUIController {
+public class RetriittiGUIController implements Initializable {
+    
+    @FXML private ListChooser<Osallistuja> chooserOsallistujat;
+    
+    /**
+     * @param url s
+     * @param bundle f
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle bundle) {
+        alusta();
+    }
+    
     /**
      * Käsitellään uuden jäsenen lisääminen
      */
     @FXML private void handleUusiOsallistuja() {
-        ModalController.showModal(RetriittiGUIController.class.getResource("OsallistujaGUIView.fxml"), "Osallistuja", null, "");
+       // ModalController.showModal(RetriittiGUIController.class.getResource("OsallistujaGUIView.fxml"), "Osallistuja", null, "");
+        uusiOsallistuja();
     }
     
     /**
@@ -108,8 +130,17 @@ public class RetriittiGUIController {
    }
   
 //====================================================================   
-   String retriitinNimi;
+ //  String retriitinNimi;
    
+   private Retriitti retriitti;
+   private Osallistuja osallistujaKohdalla;
+   private TextArea areaOsallistuja = new TextArea();
+   
+   
+   
+   private void alusta() {
+       chooserOsallistujat.clear();
+   }
    /**
     * Tietojen tallennus
     */
@@ -134,6 +165,39 @@ public class RetriittiGUIController {
    private void avaa() {
        Dialogs.showMessageDialog("tämä jää pois");
    }
-    
+   
+   
+   /**
+    * @param retriitti Retriitti jota käytetään tässä käyttöliittymässä
+    */
+   public void setRetriitti(Retriitti retriitti) {
+       this.retriitti = retriitti;
+   }
+   
+   private void hae(int osnro) {
+       chooserOsallistujat.clear();
+       
+       int index = 0;
+       for (int i = 0; i < retriitti.getOsallistujia(); i++) {
+           Osallistuja osallistuja = retriitti.annaOsallistuja(i);
+           if (osallistuja.getId()== osnro) index = i;
+           chooserOsallistujat.add("" + osallistuja.getNimi(), osallistuja);
+       }
+       chooserOsallistujat.setSelectedIndex(index);
+   }
   
+   /**
+    * Lisätään retriittiin uusi osallistuja
+    */
+   private void uusiOsallistuja() {
+       Osallistuja uusi = new Osallistuja();
+       uusi.rekisteroi();
+       uusi.asetaAkuA();
+       try {
+        retriitti.lisaa(uusi);
+    } catch (SailoException e) {
+        Dialogs.showMessageDialog("Ongelma uuden luomisessa: " + e.getMessage());
+    }
+       hae(uusi.getId());
+   }
 }
