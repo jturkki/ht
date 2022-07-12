@@ -1,5 +1,6 @@
 package retriitti;
 
+import java.io.OutputStream;
 import java.io.PrintStream;
 
 /**
@@ -21,6 +22,7 @@ public class Osallistuja {
     
     private static int seuraavaNro = 1;
     
+      
     
     /**
      * Tulostetaan osallistujan tiedot
@@ -33,6 +35,33 @@ public class Osallistuja {
                 puhelinnro + " " + email);
     }
     
+    
+    /**
+     * Tulostetaan osallistujan tiedot
+     * @param os tietovirta johon tulostetaan
+     */
+    public void tulosta(OutputStream os) {
+        tulosta(new PrintStream(os));
+    }
+    
+    
+    /**
+     * Antaa osallistujalle seuraavan rekisterinumeron.
+     * @return osallistujan uusi id
+     */
+    public int rekisteroi() {
+        id = seuraavaNro;
+        seuraavaNro++;
+        return id;
+    }
+    
+    /**
+     * palauttaa osallistujan id:n
+     * @return osallistujan id-nro
+     */
+    public int getId() {
+        return id;
+    }
 
     /**
      * @param args ei käytetä
@@ -40,8 +69,8 @@ public class Osallistuja {
     public static void main(String[] args) {
     Osallistuja aku = new Osallistuja();
     Osallistuja aku2 = new Osallistuja();
- //   aku.rekisteroi();
- //   aku2.rekisteroi();
+    aku.rekisteroi();
+    aku2.rekisteroi();
     aku.tulosta(System.out);
  //   aku.asetaAkuA();
  //   aku.tulosta(System.out);
