@@ -3,6 +3,8 @@ package retriitti;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import static kanta.HetuTarkistus.*;
+
 /**
  * Retriitin osallistuja
  * @author jyrit
@@ -17,7 +19,7 @@ public class Osallistuja {
     private String hetu       = "";
     private String katuosoite = "";
     private String postiosoite= "";
-    private int puhelinnro    = 0;
+    private String puhelinnro = "";
     private String email      = "";
     
     private static int seuraavaNro = 1;
@@ -44,10 +46,45 @@ public class Osallistuja {
         tulosta(new PrintStream(os));
     }
     
+    /**
+     * apumetodi osallistujan testausta varten, hetu arvottu
+     * @param apuhetu arvottu hetu
+     */
+    public void asetaAkuA(String apuhetu) {
+        etunimi = "Aku";
+        sukunimi = "Ankka";
+        hetu = apuhetu;
+        katuosoite = "Paratiisitie 13";
+        postiosoite = "00100 Ankkis";
+        puhelinnro = "0400111222";
+        email = "aku@ankkalinna.fi";
+    }
+    
+    /**
+     * Apumetodi antaa testiarvot osallistujalle.
+     * Henkilötunnus arvotaan, jotta eri osallistujalla eri.
+     * 
+     */
+    public void asetaAkuA() {
+        String apuhetu = arvoHetu();
+        asetaAkuA(apuhetu);
+    }
+    
     
     /**
      * Antaa osallistujalle seuraavan rekisterinumeron.
      * @return osallistujan uusi id
+     * @example
+     * <pre name="test">
+     * Osallistuja aku1 = new Osallistuja();
+     * aku1.getId() === 0;
+     * aku1.rekisteroi();
+     * Osallistuja aku2 = new Osallistuja();
+     * aku2.rekisteroi();
+     * int n1 = aku1.getId();
+     * int n2 = aku2.getId();
+     * n1 === n2-1;
+     * </pre>
      */
     public int rekisteroi() {
         id = seuraavaNro;
@@ -72,10 +109,10 @@ public class Osallistuja {
     aku.rekisteroi();
     aku2.rekisteroi();
     aku.tulosta(System.out);
- //   aku.asetaAkuA();
- //   aku.tulosta(System.out);
+    aku.asetaAkuA();
+    aku.tulosta(System.out);
     
- //   aku2.asetaAkuA();
+    aku2.asetaAkuA();
     aku2.tulosta(System.out);
     
     }
