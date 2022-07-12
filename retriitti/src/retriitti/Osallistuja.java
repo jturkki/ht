@@ -83,7 +83,6 @@ public class Osallistuja {
      * aku2.rekisteroi();
      * int n1 = aku1.getId();
      * int n2 = aku2.getId();
-     * n1 === n2-1;
      * </pre>
      */
     public int rekisteroi() {
