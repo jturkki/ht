@@ -100,7 +100,7 @@
                   <Label text="Osallistujan tiedot" BorderPane.alignment="CENTER" />
                </top>
                <center>
-                  <ScrollPane fitToWidth="true" maxWidth="400.0" minWidth="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                  <ScrollPane fx:id="panelOsallistuja" fitToWidth="true" maxWidth="400.0" minWidth="300.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                      <content>
                         <GridPane hgap="10.0">
                           <columnConstraints>

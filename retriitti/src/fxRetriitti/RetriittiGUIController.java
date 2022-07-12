@@ -1,15 +1,19 @@
 package fxRetriitti;
 
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 import fi.jyu.mit.fxgui.ModalController;
+import fi.jyu.mit.fxgui.TextAreaOutputStream;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 import retriitti.Osallistuja;
 import retriitti.Retriitti;
 import retriitti.SailoException;
@@ -24,6 +28,7 @@ import retriitti.SailoException;
 public class RetriittiGUIController implements Initializable {
     
     @FXML private ListChooser<Osallistuja> chooserOsallistujat;
+    @FXML private ScrollPane panelOsallistuja;
     
     /**
      * @param url s
@@ -133,14 +138,32 @@ public class RetriittiGUIController implements Initializable {
  //  String retriitinNimi;
    
    private Retriitti retriitti;
-   private Osallistuja osallistujaKohdalla;
-   private TextArea areaOsallistuja = new TextArea();
+//   private Osallistuja osallistujaKohdalla;
+   private TextArea areaOsallistuja = new TextArea();  // TODO: poista lopuksi
    
    
    
    private void alusta() {
+       panelOsallistuja.setContent(areaOsallistuja);
+       areaOsallistuja.setFont(new Font("Courier New", 12));
+       panelOsallistuja.setFitToHeight(true);
        chooserOsallistujat.clear();
+       chooserOsallistujat.addSelectionListener(e -> naytaOsallistuja());
    }
+   
+   
+   private void naytaOsallistuja() {
+       Osallistuja osallistujaKohdalla = chooserOsallistujat.getSelectedObject();
+       
+       if (osallistujaKohdalla == null) return;
+       
+       areaOsallistuja.setText("");
+       try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaOsallistuja)) {
+           osallistujaKohdalla.tulosta(os);
+       }
+   }
+   
+   
    /**
     * Tietojen tallennus
     */
