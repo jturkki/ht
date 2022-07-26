@@ -1,5 +1,8 @@
 package retriitti;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author jyrit
  * @version 12.7.2022
@@ -69,6 +72,23 @@ public class Retriitti {
     public void lisaa(Workshop workshop) throws SailoException {
         this.workshopit.lisaa(workshop);
     }
+    
+    /**
+     * listaa osallistujan workshopit
+     * @param osallistuja jonka workshopit listataan
+     * 
+     * @return lista osallistujan workshopeista
+     */
+    public ArrayList<Workshop> osallistujanWorkshopit(Osallistuja osallistuja) {
+        ArrayList<Workshop> osWS = new ArrayList<Workshop>();
+  //      int wsid = -1;
+        int temp[] = osallistuja.annaWorkshopit();
+        for (int i=0; i<temp.length; i++)
+            osWS.add(workshopit.anna(i));
+        return osWS;
+    }
+    
+   
 
     /**
      * @param args ei käytössä

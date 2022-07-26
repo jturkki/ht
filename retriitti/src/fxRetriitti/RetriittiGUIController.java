@@ -17,6 +17,7 @@ import javafx.scene.text.Font;
 import retriitti.Osallistuja;
 import retriitti.Retriitti;
 import retriitti.SailoException;
+import retriitti.Workshop;
 
 /**
  * Luokka käyttöliittymän tapahtumien hoitamiseksi
@@ -110,7 +111,7 @@ public class RetriittiGUIController implements Initializable {
      * Osallistujan lisääminen workshoppiin 
      */
    @FXML private void handleLisaaOsallistujalleWorkshop() {
-        Dialogs.showMessageDialog("Tarttis lisätä workshop. Vaan eipä toimi vielä");
+        uusiWorkshop();
     }
 
     /**
@@ -140,6 +141,7 @@ public class RetriittiGUIController implements Initializable {
    private Retriitti retriitti;
 //   private Osallistuja osallistujaKohdalla;
    private TextArea areaOsallistuja = new TextArea();  // TODO: poista lopuksi
+
    
    
    
@@ -155,12 +157,24 @@ public class RetriittiGUIController implements Initializable {
    private void naytaOsallistuja() {
        Osallistuja osallistujaKohdalla = chooserOsallistujat.getSelectedObject();
        
+       
        if (osallistujaKohdalla == null) return;
        
        areaOsallistuja.setText("");
        try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaOsallistuja)) {
            osallistujaKohdalla.tulosta(os);
+      
+       
+       int[] osWS = osallistujaKohdalla.annaWorkshopit();
+       int pit = osWS.length;
+       if (pit >0 ) {
+           for (int i = 0; i<pit; i++) {
+               Workshop workshop = retriitti.annaWorkshop(i);
+               workshop.tulosta(os);
+           }
        }
+       }
+               
    }
    
    
@@ -208,6 +222,8 @@ public class RetriittiGUIController implements Initializable {
        }
        chooserOsallistujat.setSelectedIndex(index);
    }
+   
+   
   
    /**
     * Lisätään retriittiin uusi osallistuja
@@ -216,6 +232,21 @@ public class RetriittiGUIController implements Initializable {
        Osallistuja uusi = new Osallistuja();
        uusi.rekisteroi();
        uusi.asetaAkuA();
+       try {
+        retriitti.lisaa(uusi);
+    } catch (SailoException e) {
+        Dialogs.showMessageDialog("Ongelma uuden luomisessa: " + e.getMessage());
+    }
+       hae(uusi.getId());
+   }
+   
+   /**
+    * Lisätään retriittiin uusi Workshop
+    */
+   private void uusiWorkshop() {
+       Workshop uusi = new Workshop();
+       uusi.rekisteroi();
+       uusi.asetaJoku();
        try {
         retriitti.lisaa(uusi);
     } catch (SailoException e) {

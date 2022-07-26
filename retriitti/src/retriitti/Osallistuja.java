@@ -107,6 +107,15 @@ public class Osallistuja {
     public String getNimi() {
         return sukunimi + " " + etunimi;
     }
+    
+    /**
+     * palauttaa kokonaislukutaulukon osallistujan workshoppien id:t
+     * @return id-lista workshopeista joihin osallistuja osallistuu
+     */
+    public int[] annaWorkshopit() {
+      int[] osWS = {0,1};
+      return osWS;
+    }
 
     /**
      * @param args ei käytetä

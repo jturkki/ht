@@ -78,6 +78,8 @@ public class Workshop {
         return workshop;
     }
     
+    
+   
     /**
      * @param args ei käytössä
      */
