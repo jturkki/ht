@@ -2,6 +2,7 @@ package fxRetriitti;
 
 import java.io.PrintStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.Dialogs;
@@ -15,6 +16,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 import retriitti.Osallistuja;
+import retriitti.OsallistuuWorkshoppiin;
 import retriitti.Retriitti;
 import retriitti.SailoException;
 import retriitti.Workshop;
@@ -76,7 +78,10 @@ public class RetriittiGUIController implements Initializable {
      * Uuden workshopin lisääminen
      */
     @FXML private void handleLisaaWorkshop() {
-        ModalController.showModal(RetriittiGUIController.class.getResource("WorkshopGUIView.fxml"), "Workshop", null, "");
+     
+        uusiWorkshop();
+        
+        //   ModalController.showModal(RetriittiGUIController.class.getResource("WorkshopGUIView.fxml"), "Workshop", null, "");
     }
     
     /**
@@ -111,7 +116,7 @@ public class RetriittiGUIController implements Initializable {
      * Osallistujan lisääminen workshoppiin 
      */
    @FXML private void handleLisaaOsallistujalleWorkshop() {
-        uusiWorkshop();
+        lisaaOsallistujalleWorkshop();
     }
 
     /**
@@ -164,16 +169,16 @@ public class RetriittiGUIController implements Initializable {
        try (PrintStream os = TextAreaOutputStream.getTextPrintStream(areaOsallistuja)) {
            osallistujaKohdalla.tulosta(os);
       
+       ArrayList<Integer> osWS = new ArrayList<Integer>();
+        osWS = retriitti.annaWorkshopit(osallistujaKohdalla);
        
-       int[] osWS = osallistujaKohdalla.annaWorkshopit();
-       int pit = osWS.length;
-       if (pit >0 ) {
-           for (int i = 0; i<pit; i++) {
-               Workshop workshop = retriitti.annaWorkshop(i);
+        for (Integer i: osWS) {
+        
+               Workshop workshop = retriitti.annaWorkshop(i.intValue());
                workshop.tulosta(os);
            }
        }
-       }
+       
                
    }
    
@@ -252,6 +257,16 @@ public class RetriittiGUIController implements Initializable {
     } catch (SailoException e) {
         Dialogs.showMessageDialog("Ongelma uuden luomisessa: " + e.getMessage());
     }
-       hae(uusi.getId());
+      
+   }
+   
+   private void lisaaOsallistujalleWorkshop() {
+       Osallistuja osallistujaKohdalla = chooserOsallistujat.getSelectedObject();
+       if (osallistujaKohdalla == null) return;
+       
+       OsallistuuWorkshoppiin uusi = new OsallistuuWorkshoppiin();
+       uusi.asetaJoku(osallistujaKohdalla);
+       retriitti.lisaaOsWs(uusi);
+       hae(osallistujaKohdalla.getId());
    }
 }

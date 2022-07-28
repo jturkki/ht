@@ -1,7 +1,7 @@
 package retriitti;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * @author jyrit
@@ -12,6 +12,7 @@ public class Retriitti {
     
     private final Osallistujat osallistujat = new Osallistujat();
     private final Workshopit workshopit = new Workshopit();
+    private final OsallistumisetWorkshoppeihin osallistumiset = new OsallistumisetWorkshoppeihin();
     
     
 
@@ -55,6 +56,16 @@ public class Retriitti {
     }
     
     /**
+     * listaa osallistujan workshoppien id:t
+     * @param osallistuja jonka osallistumiset listataan
+     * @return kokonaislukutaulukko jossa osallistujan workshoppien id:t
+     */
+    public ArrayList<Integer> annaWorkshopit(Osallistuja osallistuja) {
+        ArrayList<Integer> wsLista = osallistumiset.annaWSlistaus(osallistuja);
+        return wsLista;
+    }
+    
+    /**
      * lisää osallistujan retriittiin
      * @param osallistuja joka lisätään
      * @throws SailoException jos tietorakenne täysi
@@ -73,20 +84,15 @@ public class Retriitti {
         this.workshopit.lisaa(workshop);
     }
     
+    
     /**
-     * listaa osallistujan workshopit
-     * @param osallistuja jonka workshopit listataan
-     * 
-     * @return lista osallistujan workshopeista
+     * lisää osallistujalle workshop
+     * @param osallistuminen workshoppiin joka lisätään
      */
-    public ArrayList<Workshop> osallistujanWorkshopit(Osallistuja osallistuja) {
-        ArrayList<Workshop> osWS = new ArrayList<Workshop>();
-  //      int wsid = -1;
-        int temp[] = osallistuja.annaWorkshopit();
-        for (int i=0; i<temp.length; i++)
-            osWS.add(workshopit.anna(i));
-        return osWS;
+    public void lisaaOsWs(OsallistuuWorkshoppiin osallistuminen) {
+        this.osallistumiset.lisaaOsWs(osallistuminen);
     }
+    
     
    
 
