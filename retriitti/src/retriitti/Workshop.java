@@ -27,7 +27,7 @@ public class Workshop {
      * @param out tietovirta johon tulostetaan
      */
     public void tulosta(PrintStream out) {
-        out.println(String.format("%03d", id, 3) + " " + workshop + " " + sijainti + " " + max_os + " " + vetaja);
+        out.println(String.format("%03d", id, 3) + "| " + workshop + "| " + sijainti + "| " + max_os + "| " + vetaja);
     }
     
     

@@ -3,6 +3,8 @@
  */
 package retriitti;
 
+import java.io.PrintStream;
+
 /**
  * @author jyrit
  * @version 26.7.2022
@@ -55,6 +57,19 @@ public class OsallistuuWorkshoppiin {
      */
     public int getId() {
         return id;
+    }
+    
+    /**
+     * tulostaa osallistumisenworkshoppiin
+     * tulostus muotoa:
+     * <pre>
+     *  1 | 1 | 1
+     *  1 | 2 | 1
+     * </pre>
+     * @param out tietovirta johon tulostetaan
+     */
+    public void tulosta(PrintStream out) {
+        out.println("" + id + "| " + osid + "| " + wsid);
     }
 
 

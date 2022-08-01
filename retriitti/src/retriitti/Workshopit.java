@@ -1,5 +1,10 @@
 package retriitti;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 /**
  * @author jyrit
  * @version 18.7.2022
@@ -52,6 +57,28 @@ public class Workshopit {
     }
 
 
+    /**
+     * Tallentaa workshoppien tiedot tiedostoon
+     * Tiedot muodossa:
+     * <pre>
+     * 1 |Ohjelmointi | Teltta     | 6      | Tuuba Tontsa   
+     * 2 |Testaus     | Kanervikko | 2      | Jurtta Jaakko 
+     * </pre>
+     * @param tiedNimi tallennettavan tiedoston nimi
+     * @throws SailoException jos tallennus epäonnistuu
+     */
+    public void tallenna(String tiedNimi) throws SailoException {
+        File fileNimi = new File(tiedNimi);
+        try (PrintStream fo = new PrintStream(new FileOutputStream("data/" + fileNimi, false))){
+            for (int i=0; i<getLkm(); i++) {
+                Workshop ws = anna(i);
+                ws.tulosta(fo);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
+        }
+    }
+
 
     /**
      * @param args ei käytössä
@@ -80,6 +107,11 @@ public class Workshopit {
             workshop.tulosta(System.out);
 
         }
-
+        try {
+            workshopit.tallenna("wstesti.txt");
+        } catch (SailoException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

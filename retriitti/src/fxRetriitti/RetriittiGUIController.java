@@ -1,9 +1,12 @@
 package fxRetriitti;
 
+
+
 import java.io.PrintStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
@@ -187,7 +190,7 @@ public class RetriittiGUIController implements Initializable {
     * Tietojen tallennus
     */
    private void tallenna() {
-       Dialogs.showMessageDialog("Tallennetetaan! Mutta ei toimi vielä");
+       retriitti.tallenna();
    }
    
     /**
@@ -205,7 +208,7 @@ public class RetriittiGUIController implements Initializable {
     
     
    private void avaa() {
-       Dialogs.showMessageDialog("tämä jää pois");
+     //
    }
    
    

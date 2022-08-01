@@ -93,7 +93,22 @@ public class Retriitti {
         this.osallistumiset.lisaaOsWs(osallistuminen);
     }
     
-    
+    /**
+     * tallentaa retriitin tiedot tiedostoihin
+     */
+    public void tallenna() {
+        try {
+            osallistujat.tallenna("testiOsallistujat.txt");
+            workshopit.tallenna("testiWs.txt");
+            osallistumiset.tallenna("testiOsall.txt");
+            
+            
+        } catch (SailoException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
    
 
     /**

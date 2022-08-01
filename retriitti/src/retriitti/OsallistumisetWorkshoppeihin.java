@@ -3,6 +3,10 @@
  */
 package retriitti;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -14,7 +18,7 @@ import java.util.Iterator;
  */
 public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshoppiin> {
     
-    private final Collection<OsallistuuWorkshoppiin> alkiot = new ArrayList<OsallistuuWorkshoppiin>();
+    private final ArrayList<OsallistuuWorkshoppiin> alkiot = new ArrayList<OsallistuuWorkshoppiin>();
     
    
     
@@ -56,6 +60,41 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
             if(osws.getOsallistuja() == osallistuja.getId()) listaus.add(osws.getWorkshop());
         }
         return listaus;
+    }
+    
+    
+    /**
+     * palauttaa i:nnen OsallistuuWorkshoppiin
+     * @param i OsallistuuWorkshoppiin indeksi
+     * @return yksittäinen alkio OsallistuuWorkshoppiin
+     */
+    public OsallistuuWorkshoppiin anna(int i) {
+        if ( i<0 || i>= alkiot.size()) throw new IndexOutOfBoundsException("Laitoin indeksi " + i);
+        return alkiot.get(i);
+    }
+    
+    /**
+     * Tallentaa workshoppien tiedot tiedostoon
+     * Tiedot muodossa:
+     * <pre>
+     * 1  | 1  | 1            
+     * 2  | 1  | 2          
+     * 3  | 1  | 3               
+     * 4  | 2  | 2   
+     * </pre>
+     * @param tiedNimi tallennettavan tiedoston nimi
+     * @throws SailoException jos tallennus epäonnistuu
+     */
+    public void tallenna(String tiedNimi) throws SailoException {
+        File fileNimi = new File(tiedNimi);
+        try (PrintStream fo = new PrintStream(new FileOutputStream("data/" + fileNimi, false))){
+            for (int i=0; i < alkiot.size(); i++) {
+                OsallistuuWorkshoppiin osws = anna(i);
+                osws.tulosta(fo);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
+        }
     }
     
     /**

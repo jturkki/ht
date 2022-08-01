@@ -3,6 +3,11 @@
  */
 package retriitti;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
 /**
  * @author jyrit
  * @version 12.7.2022
@@ -74,6 +79,29 @@ public class Osallistujat {
             throw new IndexOutOfBoundsException("Laiton indeksi: " + i);
         return alkiot[i];
     }
+    
+    
+    /**
+     * Tallentaa osallistujien tiedot tiedostoon
+     * Tiedot muodossa:
+     * <pre>
+     * 1 |Naakka |Aimo      |421160-122T  |Naakankatu 6    |55511 Naakkala  |0881234567  |naakat@linnut.fi
+     * 2 |Kaali  |Heli      |552279-1443  |Kaalimaa 3      |11112 Vihannes  |0112233445  |heli@kaalimaa.fi
+     * </pre>
+     * @param tiedNimi tallennettavan tiedoston nimi
+     * @throws SailoException jos tallennus epäonnistuu
+     */
+    public void tallenna(String tiedNimi) throws SailoException {
+        File fileNimi = new File(tiedNimi);
+        try (PrintStream fo = new PrintStream(new FileOutputStream("data/" + fileNimi, false))){
+            for (int i=0; i<getLkm(); i++) {
+                Osallistuja os = anna(i);
+                os.tulosta(fo);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
+        }
+    }
 
     /**
      * @param args ei käytössä
@@ -103,6 +131,13 @@ public class Osallistujat {
         System.out.println("Osallistuja indeksi: " + i);
         osallistuja.tulosta(System.out);
     }
+    try {
+        osallistujat.tallenna("testi.txt");
+    } catch (SailoException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    
     
     }
 
