@@ -4,9 +4,11 @@
 package retriitti;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 /**
  * @author jyrit
@@ -88,12 +90,12 @@ public class Osallistujat {
      * 1 |Naakka |Aimo      |421160-122T  |Naakankatu 6    |55511 Naakkala  |0881234567  |naakat@linnut.fi
      * 2 |Kaali  |Heli      |552279-1443  |Kaalimaa 3      |11112 Vihannes  |0112233445  |heli@kaalimaa.fi
      * </pre>
-     * @param tiedNimi tallennettavan tiedoston nimi
+     * @param tiedNimi tallennettavan tiedoston hakemisto
      * @throws SailoException jos tallennus epäonnistuu
      */
     public void tallenna(String tiedNimi) throws SailoException {
         File fileNimi = new File(tiedNimi);
-        try (PrintStream fo = new PrintStream(new FileOutputStream("data/" + fileNimi, false))){
+        try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/nimet.txt", false))){
             for (int i=0; i<getLkm(); i++) {
                 Osallistuja os = anna(i);
                 os.tulosta(fo);
@@ -102,12 +104,41 @@ public class Osallistujat {
             throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
         }
     }
+    
+    
+    /**
+     * lukee Osallistujien tiedot tiedostosta
+     * @param tiedNimi hakemiston nimi jossa tiedot sijaitsevat
+     * @throws SailoException jos tiedoston luku ei onnistu
+     */
+    public void lueTiedostosta(String tiedNimi) throws SailoException {
+        String nimi = tiedNimi + "/nimet.txt";
+        File ftied = new File(nimi);
+        
+        try (Scanner fi = new Scanner(new FileInputStream(ftied))) {
+            while (fi.hasNext()) {
+                String s = "";
+                s = fi.nextLine();
+                Osallistuja os = new Osallistuja();
+                os.parse(s);
+                lisaa(os);
+            }
+        } catch ( FileNotFoundException e ) {
+            throw new SailoException("Ei saa luettua tiedostoa " + nimi);
+        }
+    }
 
     /**
      * @param args ei käytössä
      */
     public static void main(String[] args) {
     Osallistujat osallistujat = new Osallistujat();
+    
+    try {
+        osallistujat.lueTiedostosta("testi");
+    } catch (SailoException ex) {
+        System.err.println(ex.getMessage());
+    }
     Osallistuja aku = new Osallistuja();
     Osallistuja aku2 = new Osallistuja();
     
@@ -132,7 +163,7 @@ public class Osallistujat {
         osallistuja.tulosta(System.out);
     }
     try {
-        osallistujat.tallenna("testi.txt");
+        osallistujat.tallenna("testi");
     } catch (SailoException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

@@ -3,6 +3,7 @@ package retriitti;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import fi.jyu.mit.ohj2.Mjonot;
 import kanta.HetuTarkistus;
 
 import static kanta.HetuTarkistus.*;
@@ -33,9 +34,25 @@ public class Osallistuja {
      * @param out tietovirta johon tulostetaan
      */
     public void tulosta(PrintStream out) {
-        out.println(String.format("%03d", id, 3) + "| " + etunimi + "| " + 
-                sukunimi + "| " + hetu + "| " + katuosoite + "| " + postiosoite + "| " +
-                puhelinnro + "| " + email);
+        out.println(this.toString());
+    }
+    
+    
+    @Override
+    public String toString() {
+        return "" + id + "| " + sukunimi + "| " + 
+                etunimi + "| " + hetu + "| " + katuosoite + "| " + postiosoite + "| " +
+                puhelinnro + "| " + email;
+    }
+    
+    
+    /** Asettaa id:n ja varmistaa että seuraava numero on 
+     * suurempi kuin tähän mennessä suurin id-numero
+     * @param i asetettava id-nro
+     */
+    public void setId(int i) {
+        id = i;
+        if (i >= seuraavaNro) seuraavaNro = i+1;
     }
     
     
@@ -82,8 +99,7 @@ public class Osallistuja {
      * aku1.rekisteroi();
      * Osallistuja aku2 = new Osallistuja();
      * aku2.rekisteroi();
-     * int n1 = aku1.getId();
-     * int n2 = aku2.getId();
+     * aku2.getId() - aku1.getId() === 1;
      * </pre>
      */
     public int rekisteroi() {
@@ -105,6 +121,32 @@ public class Osallistuja {
      */
     public String getNimi() {
         return sukunimi + " " + etunimi;
+    }
+    
+    
+    /**
+     * saa merkkijonorivin josta erotellaan osallistujan tiedot
+     * ja lisätään ne osallistujalle
+     * @param rivi josta tiedot luetaan
+     * @example
+     * <pre name="test">
+     * Osallistuja os = new Osallistuja();
+     * os.parse("  2 | Ankka | Aku | 010101-111D | Akukatu 1 | 11111 Alinna | 099111222 | aku@alinna");
+     * os.getId() === 2;
+     * os.toString() === "2| Ankka| Aku| 010101-111D| Akukatu 1| 11111 Alinna| 099111222| aku@alinna";
+     * </pre>
+     */
+    public void parse(String rivi) {
+        var sb = new StringBuilder(rivi);
+        setId(Mjonot.erota(sb, '|', getId()));
+        sukunimi = Mjonot.erota(sb, '|', sukunimi);  
+        etunimi  = Mjonot.erota(sb, '|', etunimi);
+        hetu     = Mjonot.erota(sb, '|', hetu);  
+        katuosoite = Mjonot.erota(sb, '|', katuosoite);
+        postiosoite = Mjonot.erota(sb, '|', postiosoite);
+        puhelinnro = Mjonot.erota(sb, '|', puhelinnro);
+        email    = Mjonot.erota(sb, '|', email);
+
     }
     
   

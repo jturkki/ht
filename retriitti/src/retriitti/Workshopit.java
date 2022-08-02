@@ -1,9 +1,11 @@
 package retriitti;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 /**
  * @author jyrit
@@ -69,7 +71,7 @@ public class Workshopit {
      */
     public void tallenna(String tiedNimi) throws SailoException {
         File fileNimi = new File(tiedNimi);
-        try (PrintStream fo = new PrintStream(new FileOutputStream("data/" + fileNimi, false))){
+        try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/workshopit.txt", false))){
             for (int i=0; i<getLkm(); i++) {
                 Workshop ws = anna(i);
                 ws.tulosta(fo);
@@ -79,6 +81,28 @@ public class Workshopit {
         }
     }
 
+    
+    /**
+     * lukee workshoppien tiedot tiedostosta
+     * @param tiedNimi hakemiston nimi
+     * @throws SailoException jos lukeminen ei onnistu
+     */
+    public void lueTiedostosta(String tiedNimi) throws SailoException {
+        String nimi = tiedNimi + "/workshopit.txt";
+        File fnimi = new File(nimi);
+        
+        try (Scanner fi = new Scanner(new FileInputStream(fnimi))) {
+            while (fi.hasNext()) {
+                String s = fi.nextLine();
+                Workshop ws = new Workshop();
+                ws.parse(s);
+                lisaa(ws);
+            }
+        } catch (FileNotFoundException e) {
+            throw new SailoException("Ei saa luettua tiedostoa " + nimi);
+        }
+        
+    }
 
     /**
      * @param args ei käytössä

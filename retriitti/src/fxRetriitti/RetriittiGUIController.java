@@ -190,7 +190,7 @@ public class RetriittiGUIController implements Initializable {
     * Tietojen tallennus
     */
    private void tallenna() {
-       retriitti.tallenna();
+       retriitti.tallenna("ohjelmointi");
    }
    
     /**
@@ -207,8 +207,14 @@ public class RetriittiGUIController implements Initializable {
     }
     
     
+    /**
+     * Avaa retriitin tiedot lukemalla ne tiedostoista
+     */
    private void avaa() {
-     //
+       
+           retriitti.lueTiedosto("ohjelmointi");
+           hae(0);
+       
    }
    
    

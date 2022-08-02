@@ -3,6 +3,7 @@ package retriitti;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import fi.jyu.mit.ohj2.Mjonot;
 import kanta.HetuTarkistus;
 
 /**
@@ -27,7 +28,17 @@ public class Workshop {
      * @param out tietovirta johon tulostetaan
      */
     public void tulosta(PrintStream out) {
-        out.println(String.format("%03d", id, 3) + "| " + workshop + "| " + sijainti + "| " + max_os + "| " + vetaja);
+        out.println(this.toString());
+    }
+    
+    /**
+     * asettaa workshopin tiedot merkkijonoksi muotoon:
+     * "id| workshop| sijainti| max_os| vetaja"
+     *
+     */
+    @Override
+    public String toString() {
+        return "" + id + "| " + workshop + "| " + sijainti + "| " + max_os + "| " + vetaja;
     }
     
     
@@ -63,6 +74,16 @@ public class Workshop {
     
     
     /**
+     * asettaa workshopin id-numeron ja varmistaa että seuraava numero on sitä suurempi
+     * @param i workshopin id-numero
+     */
+    public void setId(int i) {
+        id = i;
+        if (i >= seuraavaNumero) seuraavaNumero = i+1;
+    }
+    
+    
+    /**
      * palauttaa workhsopin id:n
      * @return id
      */
@@ -76,6 +97,27 @@ public class Workshop {
      */
     public String getWorkshop() {
         return workshop;
+    }
+    
+    
+    /**
+     * asettaa workshopin tiedot saamastaan merkkijonorivistä
+     * @param rivi josta tiedot haetaan
+     * @example
+     * <pre name="test">
+     * Workshop ws = new Workshop();
+     * ws.parse(" 3 |  kailotus | verstas   | 5| Arvo Naakka");
+     * ws.getId() === 3;
+     * ws.toString() === "3| kailotus| verstas| 5| Arvo Naakka";
+     * </pre>
+     */
+    public void parse(String rivi) {
+        StringBuilder sb = new StringBuilder(rivi);
+        setId(Mjonot.erota(sb, '|', getId()));
+        workshop = Mjonot.erota(sb, '|', workshop);
+        sijainti = Mjonot.erota(sb, '|', sijainti);
+        max_os = Mjonot.erota(sb, '|', max_os);
+        vetaja  = Mjonot.erota(sb, '|', vetaja);
     }
     
     

@@ -4,12 +4,13 @@
 package retriitti;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  * @author jyrit
@@ -87,13 +88,35 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
      */
     public void tallenna(String tiedNimi) throws SailoException {
         File fileNimi = new File(tiedNimi);
-        try (PrintStream fo = new PrintStream(new FileOutputStream("data/" + fileNimi, false))){
+        try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/osallistuu.txt", false))){
             for (int i=0; i < alkiot.size(); i++) {
                 OsallistuuWorkshoppiin osws = anna(i);
                 osws.tulosta(fo);
             }
         } catch (FileNotFoundException e) {
             throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
+        }
+    }
+    
+    
+    /**
+     * lukee osallistumiset workshoppeihin tiedostosta
+     * @param tiedNimi hakemiston nimi jossa tiedot talletettuna
+     * @throws SailoException jos lukeminen epäonnistuu
+     */
+    public void lueTiedostosta(String tiedNimi) throws SailoException {
+        String nimi = tiedNimi + "/osallistuu.txt";
+        File fnimi = new File(nimi);
+        
+        try (Scanner fi = new Scanner(new FileInputStream(fnimi))) {
+            while (fi.hasNext()) {
+                String s = fi.nextLine();
+                OsallistuuWorkshoppiin osws = new OsallistuuWorkshoppiin();
+                osws.parse(s);
+                lisaaOsWs(osws);
+            }
+        } catch ( FileNotFoundException e ) {
+            throw new SailoException("Ei pysty lukemma tiedostoa " + nimi);
         }
     }
     

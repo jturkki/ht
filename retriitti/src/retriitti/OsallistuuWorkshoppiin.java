@@ -5,6 +5,8 @@ package retriitti;
 
 import java.io.PrintStream;
 
+import fi.jyu.mit.ohj2.Mjonot;
+
 /**
  * @author jyrit
  * @version 26.7.2022
@@ -59,6 +61,17 @@ public class OsallistuuWorkshoppiin {
         return id;
     }
     
+    
+    /**
+     * asettaa osallistumiselle workshoppiin id-numeron ja varmistaa
+     * että seuraava numero on sitä suurempi
+     * @param i asetettava id-numero
+     */
+    public void setId(int i) {
+        id = i;
+        if ( i>=seuraavanro) seuraavanro = i+1; 
+    }
+    
     /**
      * tulostaa osallistumisenworkshoppiin
      * tulostus muotoa:
@@ -69,7 +82,16 @@ public class OsallistuuWorkshoppiin {
      * @param out tietovirta johon tulostetaan
      */
     public void tulosta(PrintStream out) {
-        out.println("" + id + "| " + osid + "| " + wsid);
+        out.println(this.toString());
+    }
+    
+    /**
+     * asettaa osallistumiset workshoppeihin merkkijonoksi
+     * "id| osid| wsid"
+     */
+    @Override
+    public String toString() {
+        return "" + id + "| " + osid + "| " + wsid;
     }
 
 
@@ -86,6 +108,26 @@ public class OsallistuuWorkshoppiin {
         this.wsid = testi;
         testi++;
         
+    }
+    
+    
+    /**
+     * asettaa merkkijonona tulevat osallistumiset workshoppeihin 
+     * 
+     * @param rivi josta tiedot luetaan
+     * @example
+     * <pre name="test">
+     * OsallistuuWorkshoppiin osws = new OsallistuuWorkshoppiin();
+     * osws.parse("2|1|3");
+     * osws.getId() === 2;
+     * osws.toString() === "2| 1| 3";
+     * </pre>
+     */
+    public void parse(String rivi) {
+        StringBuilder sb = new StringBuilder(rivi);
+        setId(Mjonot.erota(sb, '|', getId()));
+        osid = Mjonot.erota(sb,'|', osid);
+        wsid = Mjonot.erota(sb, '|', wsid);
     }
     
     /**

@@ -95,12 +95,13 @@ public class Retriitti {
     
     /**
      * tallentaa retriitin tiedot tiedostoihin
+     * @param tnimi hakemiston nimi johon tallennetaan
      */
-    public void tallenna() {
+    public void tallenna(String tnimi) {
         try {
-            osallistujat.tallenna("testiOsallistujat.txt");
-            workshopit.tallenna("testiWs.txt");
-            osallistumiset.tallenna("testiOsall.txt");
+            osallistujat.tallenna(tnimi);
+            workshopit.tallenna(tnimi);
+            osallistumiset.tallenna(tnimi);
             
             
         } catch (SailoException e) {
@@ -108,6 +109,21 @@ public class Retriitti {
             e.printStackTrace();
         }
         
+    }
+    
+    
+    /**
+     * lukee retriitin tiedot tiedostoista
+     * @param tnimi hakemiston nimi johon tiedot talletettu
+     */
+    public void lueTiedosto(String tnimi) {
+        try {
+            osallistujat.lueTiedostosta(tnimi);
+            workshopit.lueTiedostosta(tnimi);
+            osallistumiset.lueTiedostosta(tnimi);
+        } catch (SailoException e) {
+            e.printStackTrace();
+        }
     }
    
 
