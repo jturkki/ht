@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -38,10 +39,9 @@ public class Workshopit {
     /**
      * lisää uuden workshopin tietorakenteeseen. ottaa workshopin omistukseensa.
      * @param workshop lisättävän workshopin viite
-     * @throws SailoException jos tietorakenne on jo täynnä
      */
-    public void lisaa(Workshop workshop) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa alkioita");
+    public void lisaa(Workshop workshop) {
+        if (lkm >= alkiot.length) alkiot = Arrays.copyOf(alkiot, lkm + 10);
         alkiot[lkm] = workshop;
         lkm++;
     }
@@ -116,12 +116,9 @@ public class Workshopit {
         homma1.asetaJoku();
         homma2.asetaJoku();
 
-        try {
-            workshopit.lisaa(homma1);
-            workshopit.lisaa(homma2);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
+        workshopit.lisaa(homma1);
+        workshopit.lisaa(homma2);
+      
 
         System.out.println("=============== Workshopit testi =========");
 

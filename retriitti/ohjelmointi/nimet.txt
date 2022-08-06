@@ -1,4 +1,3 @@
-1| Ankka93| Aku| 070613-5360| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-2| Ankka60| Aku| 080740-728L| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-3| Ankka71| Aku| 221124-948U| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-4| Ankka9| Aku| 190879-2505| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+1| Ank| Aku| 240784-050D| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+2| Ankka17| Aku| 180755-712D| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+3| Ankka30| Aku| 230435-0634| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi

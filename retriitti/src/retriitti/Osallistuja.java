@@ -116,6 +116,7 @@ public class Osallistuja {
         return id;
     }
     
+    
     /**
      * @return osallistujan nimi muodossa sukunimi etunimi
      */
@@ -123,6 +124,37 @@ public class Osallistuja {
         return sukunimi + " " + etunimi;
     }
     
+    /**
+     * @return osallistujan sukunimi
+     */
+    public String getSukunimi() {
+        return sukunimi;
+    }
+    
+    
+    /**
+     * asettaa osallistujan sukunimen
+     * @param s sukunimi joka asetetaan
+     * @return virheteksti jos epäsopiva
+     */
+    public String setSukunimi(String s) {
+        sukunimi = s;
+        return null;
+    }
+    
+    /**
+     * @return osallistujan etunimi
+     */
+    public String getEtunimi() {
+        return etunimi;
+    }
+    
+    /**
+     * @return osallistujan hetu
+     */
+    public String getHetu() {
+        return hetu;
+    }
     
     /**
      * saa merkkijonorivin josta erotellaan osallistujan tiedot
@@ -166,5 +198,11 @@ public class Osallistuja {
     aku2.tulosta(System.out);
     
     }
+
+
+    
+
+
+   
 
 }

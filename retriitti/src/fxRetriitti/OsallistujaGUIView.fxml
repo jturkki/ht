@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<BorderPane minWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="fi.jyu.mit.fxgui.ModalController">
+<BorderPane minWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="fxRetriitti.OsallistujaGUIController">
    <top>
-      <Label text="Osallistujan tiedot" BorderPane.alignment="CENTER">
+      <Label fx:id = "labelVirhe" text="Osallistujan tiedot" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>
@@ -44,37 +44,42 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Katuosoite:" GridPane.rowIndex="2">
+            <Label text="Hetu:" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Postiosoite:" GridPane.rowIndex="3">
+            <Label text="Katuosoite:" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Puhelin:" GridPane.rowIndex="4">
+            <Label text="Postiosoite:" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <Label text="E-mail:" GridPane.rowIndex="5">
+            <Label text="Puhelin:" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1">
+            <Label text="E-mail:" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="15.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id = "editSukunimi"  GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id = "editEtunimi" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id = "editHetu" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
@@ -93,6 +98,11 @@
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
+               </TextField>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
             </TextField>
          </children>
       </GridPane>
@@ -100,12 +110,12 @@
    <bottom>
       <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna">
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOK" text="Tallenna">
                <HBox.margin>
                   <Insets bottom="10.0" left="40.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peru">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Peru">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>

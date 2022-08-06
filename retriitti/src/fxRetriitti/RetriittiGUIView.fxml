@@ -52,7 +52,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Muokkaa">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleUusiOsallistuja" text="Lisää uusi osallistuja" />
+              <MenuItem mnemonicParsing="false" onAction="#handleMuokkaaOsallistuja" text="Muokkaa osallistujaa" />
                   <MenuItem mnemonicParsing="false" onAction="#handlePoistaOsallistuja" text="Poista osallistuja..." />
                   <MenuItem mnemonicParsing="false" onAction="#handleLisaaWorkshop" text="Lisää uusi workshop" />
                   <MenuItem mnemonicParsing="false" onAction="#handlePoistaWorkshop" text="Poista workshop..." />
@@ -76,7 +76,7 @@
                   <Label text="Osallistujat" BorderPane.alignment="CENTER" />
                </top>
                <center>
-                  <ListChooser fx:id = "chooserOsallistujat" rivit="Kaali Heli&#10;Muikku Make&#10;Naakka Aimo&#10;" BorderPane.alignment="CENTER" />
+                  <ListChooser fx:id="chooserOsallistujat" rivit="Kaali Heli&#10;Muikku Make&#10;Naakka Aimo&#10;" BorderPane.alignment="CENTER" />
                </center>
                <bottom>
                   <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -122,18 +122,20 @@
                            <children>
                               <Label text="Sukunimi" />
                               <Label text="Etunimi" GridPane.rowIndex="1" />
+                              <Label text="Hetu" GridPane.rowIndex="2" />
                               <Label text="Katuosoite" GridPane.rowIndex="3" />
                               <Label text="Postiosoite" GridPane.rowIndex="4" />
                               <Label text="Puhelin" GridPane.rowIndex="5" />
                               <Label text="Sähköposti" GridPane.rowIndex="6" />
-                              <TextField text="Kaali" GridPane.columnIndex="1" />
-                              <TextField text="Heli" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField text="Kaalimaa 3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField text="11112 Vihannes" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField text="0112233445 " GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextField text="heli@kaalimaa.fi" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextField text="552279-1443" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Hetu" GridPane.rowIndex="2" />
+                              <TextField fx:id ="editSukunimi"   GridPane.columnIndex="1" />
+                              <TextField fx:id = "editEtunimi"   GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id = "editHetu"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              
+                              
                            </children>
                         </GridPane>
                      </content>
@@ -149,7 +151,7 @@
             <VBox prefHeight="480.0" prefWidth="267.0">
                <children>
                   <Label text="Workshopit" textAlignment="CENTER" />
-                  <StringGrid prefHeight="400.0" prefWidth="296.0" rivit="Workshop | pvm | aika | kesto(h)&#10;Testaus | 12.6.22 | 14.00| 1&#10;Ihmettely | 12.6.22 |  20.00 | 3&#10;" />
+                 <StringGrid fx:id ="tableWorkshopit" prefHeight="400.0" prefWidth="296.0" rivit="Workshop | pvm | aika | kesto(h)&#10;Testaus | 12.6.22 | 14.00| 1&#10;Ihmettely | 12.6.22 |  20.00 | 3&#10;" />
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#handleLisaaOsallistujalleWorkshop" text="Lisää">

@@ -68,9 +68,8 @@ public class Retriitti {
     /**
      * lisää osallistujan retriittiin
      * @param osallistuja joka lisätään
-     * @throws SailoException jos tietorakenne täysi
      */
-    public void lisaa(Osallistuja osallistuja) throws SailoException {
+    public void lisaa(Osallistuja osallistuja) {
         this.osallistujat.lisaa(osallistuja);
     }
     
@@ -78,9 +77,8 @@ public class Retriitti {
     /**
      * lisaa workshopin retriittiin
      * @param workshop joka lisätään
-     * @throws SailoException jos tietorakenne täysi
      */
-    public void lisaa(Workshop workshop) throws SailoException {
+    public void lisaa(Workshop workshop) {
         this.workshopit.lisaa(workshop);
     }
     
@@ -149,14 +147,11 @@ public class Retriitti {
         homma1.asetaJoku();
         homma2.asetaJoku();
         
-        try {
+       
             retriitti.lisaa(aku);
             retriitti.lisaa(aku2);
             retriitti.lisaa(homma1);
             retriitti.lisaa(homma2);
-        } catch (SailoException e) {
-            System.err.println(e.getMessage());
-        }
         
         
         for (int i= 0; i<retriitti.getOsallistujia(); i++) {

@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -42,10 +43,8 @@ public class Osallistujat {
      * Lisää uuden osallistujan tietorakenteeseen. Ottaa osallistujan
      * omistukseensa.
      * @param osallistuja lisättävän osallistujan viite. Huom tietorakenne muuttuu osallistujaksi.
-     * @throws SailoException jos tietorakenne on jo täynnä
      * @example
      * <pre name="test">
-     * #THROWS SailoException 
      * Osallistujat osallistujat = new Osallistujat();
      * Osallistuja aku1 = new Osallistuja(), aku2 = new Osallistuja();
      * osallistujat.getLkm() === 0;
@@ -60,11 +59,11 @@ public class Osallistujat {
      * osallistujat.anna(3) === aku1; #THROWS IndexOutOfBoundsException 
      * osallistujat.lisaa(aku1); osallistujat.getLkm() === 4;
      * osallistujat.lisaa(aku1); osallistujat.getLkm() === 5;
-     * osallistujat.lisaa(aku1);  #THROWS SailoException
+     * osallistujat.lisaa(aku1);  
      * </pre>
      */
-    public void lisaa(Osallistuja osallistuja) throws SailoException {
-        if (lkm >= alkiot.length) throw new SailoException("Liikaa alkioita");
+    public void lisaa(Osallistuja osallistuja) {
+        if (lkm >= alkiot.length) alkiot = Arrays.copyOf(alkiot, lkm+20);
         alkiot[lkm] = osallistuja;
         lkm++;
     }
@@ -146,14 +145,9 @@ public class Osallistujat {
     aku2.rekisteroi(); 
     aku.asetaAkuA();
     aku2.asetaAkuA();
-    
-    try {
-        osallistujat.lisaa(aku);
-        osallistujat.lisaa(aku2);
-    } catch (SailoException e) {
-       System.err.println(e.getMessage());
-    }
-    
+
+    osallistujat.lisaa(aku);
+    osallistujat.lisaa(aku2);
     
     System.out.println("=============== Osallistujat testi =========");
     
