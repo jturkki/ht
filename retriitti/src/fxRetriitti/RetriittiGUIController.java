@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import retriitti.Osallistuja;
 import retriitti.OsallistuuWorkshoppiin;
 import retriitti.Retriitti;
+
 import retriitti.Workshop;
 
 /**
@@ -37,6 +38,10 @@ public class RetriittiGUIController implements Initializable {
     @FXML TextField editSukunimi;
     @FXML TextField editEtunimi;
     @FXML TextField editHetu;
+    @FXML TextField editKatuosoite;
+    @FXML TextField editPostiosoite;
+    @FXML TextField editPuhelin;
+    @FXML TextField editEmail;
     @FXML StringGrid<Workshop> tableWorkshopit;
     
     /**
@@ -164,7 +169,7 @@ public class RetriittiGUIController implements Initializable {
 
        chooserOsallistujat.clear();
        chooserOsallistujat.addSelectionListener(e -> naytaOsallistuja());
-       TextField[] edts1 = {editSukunimi, editEtunimi, editHetu};
+       TextField[] edts1 = {editSukunimi, editEtunimi, editHetu, editKatuosoite, editPostiosoite, editPuhelin, editEmail};
        edits = edts1;
    }
    
@@ -242,6 +247,11 @@ public class RetriittiGUIController implements Initializable {
        this.retriitti = retriitti;
    }
    
+   
+   /**
+    * hakee osallistujan tiedot listaan
+    * @param osnro osallistujan id
+    */
    private void hae(int osnro) {
        chooserOsallistujat.clear();
        
@@ -260,19 +270,30 @@ public class RetriittiGUIController implements Initializable {
     * Lisätään retriittiin uusi osallistuja
     */
    private void uusiOsallistuja() {
-       Osallistuja uusi = new Osallistuja();
-       uusi.rekisteroi();
-       uusi.asetaAkuA();
        
-       retriitti.lisaa(uusi);
-    
-       hae(uusi.getId());
+           Osallistuja uusi = new Osallistuja();
+           uusi = OsallistujaGUIController.kysyOsallistuja(null, uusi);
+           if (uusi == null) return;
+           uusi.rekisteroi();
+           retriitti.lisaa(uusi);
+           hae(uusi.getId());
+       
+       
    }
    
    private void muokkaa() {
        Osallistuja osallistujaKohdalla = chooserOsallistujat.getSelectedObject();
        if (osallistujaKohdalla == null) return;
-       OsallistujaGUIController.kysyOsallistuja(null, osallistujaKohdalla);
+       
+    try {
+         Osallistuja osall = OsallistujaGUIController.kysyOsallistuja(null, osallistujaKohdalla.clone());
+        if (osall == null) return;
+        retriitti.korvaaTaiLisaa(osall);
+        hae(osall.getId());
+    } catch (CloneNotSupportedException e) {
+        Dialogs.showMessageDialog(e.getMessage());
+    }
+       
    }
    
    

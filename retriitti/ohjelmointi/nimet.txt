@@ -1,7 +1,4 @@
-1| Ank| Aku| 240784-050D| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-2| Ankka17| Aku| 180755-712D| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-3| Ankka30| Aku| 230435-0634| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-4| Ankka90| Aku| 021133-468S| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-5| Ankka40| Aku| 020950-161M| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-6| Ankka38| Aku| 120951-7157| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-7| Kekkonen| Aku| 200927-429Y| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+1| Ankka| Akukk| 050965-755L| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+2| Ankka56| Aku| 050445-0079| Paratiisitie| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+3| Ankka62| Aku| 240852-407F| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
+4| Hanhi| Hannu| 111277-123L| Hannula 2| 1233 hanki| 23423 | aldkfj

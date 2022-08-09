@@ -130,10 +130,10 @@
                               <TextField fx:id ="editSukunimi"   GridPane.columnIndex="1" />
                               <TextField fx:id = "editEtunimi"   GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id = "editHetu"  GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextField  GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextField fx:id = "editKatuosoite" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id = "editPostiosoite" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id = "editPuhelin" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id = "editEmail" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               
                               
                            </children>

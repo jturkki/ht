@@ -24,6 +24,10 @@ public class OsallistujaGUIController implements ModalControllerInterface<Osalli
     @FXML TextField editSukunimi;
     @FXML TextField editEtunimi;
     @FXML TextField editHetu;
+    @FXML TextField editKatuosoite;
+    @FXML TextField editPostiosoite;
+    @FXML TextField editPuhelin;
+    @FXML TextField editEmail;
     @FXML Label labelVirhe;
     
     
@@ -35,8 +39,7 @@ public class OsallistujaGUIController implements ModalControllerInterface<Osalli
 
     @Override
     public Osallistuja getResult() {
-        // TODO Auto-generated method stub
-        return null;
+        return osallistujaKohdalla;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class OsallistujaGUIController implements ModalControllerInterface<Osalli
 
     @Override
     public void setDefault(Osallistuja oletus) {
-        this.osallistujaKohdalla = oletus;
+        osallistujaKohdalla = oletus;
         naytaOsallistuja(edits, osallistujaKohdalla);
         
     }
@@ -58,7 +61,7 @@ public class OsallistujaGUIController implements ModalControllerInterface<Osalli
             naytaVirhe("Nimi ei saa olla tyhjä");
             return;
         }
-        ModalController.closeStage(labelVirhe);
+        ModalController.closeStage(editEtunimi);
     }
     
     
@@ -76,20 +79,39 @@ public class OsallistujaGUIController implements ModalControllerInterface<Osalli
     
     
     private void alusta() {
-        edits = new TextField[]{editSukunimi, editEtunimi, editHetu};
-        editSukunimi.setOnKeyReleased(e -> kasitteleMuutosOsallistujaan(1, editSukunimi));
+        edits = new TextField[]{editSukunimi, editEtunimi, editHetu, editKatuosoite, editPostiosoite, editPuhelin, editEmail};
+        int i = 0;
+        for (TextField edit: edits) {
+            int j = i+1;
+            edit.setOnKeyReleased(e -> kasitteleMuutosOsallistujaan(j, edit));
+            i++;
+        }
     }
     
     
     private void kasitteleMuutosOsallistujaan(int k, TextField edit) {
         if (osallistujaKohdalla == null) return;
         String s = edit.getText();
+        if (s == null) return;
         String virhe = null;
-        virhe = osallistujaKohdalla.setSukunimi(s);
-        if (virhe == null) {
+        switch (k) {
+        case 1: virhe = osallistujaKohdalla.setSukunimi(s); break;
+        case 2: virhe = osallistujaKohdalla.setEtunimi(s); break;
+        case 3: virhe = osallistujaKohdalla.setHetu(s); break;
+        case 4: virhe = osallistujaKohdalla.setKatuosoite(s); break;
+        case 5: virhe = osallistujaKohdalla.setPostiosoite(s); break;
+        case 6: virhe = osallistujaKohdalla.setPuhelin(s); break;
+        case 7: virhe = osallistujaKohdalla.setEmail(s); break;
+        default:
+            break;
+        }
+       
+        if (virhe != null) {
+            edit.getStyleClass().add("virhe");
             naytaVirhe(virhe);
         } else {
-            naytaVirhe(virhe);
+            edit.getStyleClass().add("normaali");
+            naytaVirhe("");
         }
     }
     
@@ -103,6 +125,10 @@ public class OsallistujaGUIController implements ModalControllerInterface<Osalli
         edits[0].setText(osallistuja.getSukunimi());
         edits[1].setText(osallistuja.getEtunimi());
         edits[2].setText(osallistuja.getHetu());
+        edits[3].setText(osallistuja.getKatuosoite());
+        edits[4].setText(osallistuja.getPostiosoite());
+        edits[5].setText(osallistuja.getPuhelin());
+        edits[6].setText(osallistuja.getEmail());
         
     }
     

@@ -14,7 +14,7 @@ import static kanta.HetuTarkistus.*;
  * @version 12.7.2022
  *
  */
-public class Osallistuja {
+public class Osallistuja implements Cloneable {
     
     private int id;
     private String sukunimi   = "";
@@ -150,12 +150,113 @@ public class Osallistuja {
     }
     
     /**
+     * asettaa osallistujalle etunimen
+     * @param s nimi
+     * @return null jos ok
+     */
+    public String setEtunimi(String s) {
+        etunimi= s;
+        return null;
+    }
+    
+    /**
      * @return osallistujan hetu
      */
     public String getHetu() {
         return hetu;
     }
+
     
+    private HetuTarkistus hetut = new HetuTarkistus();
+    
+    /**
+     * asettaa osallistujalle hetun
+     * @param s hetu
+     * @return null jos ok
+     */
+    public String setHetu(String s) {
+        String virhe = hetut.tarkista(s);
+        if (virhe != null) return virhe;
+        hetu= s;
+        return null;
+    }
+    
+    
+    /**
+     * asettaa osallistujalle katuosoitteen
+     * @param s katuosoite
+     * @return null jos ok
+     */
+    public String setKatuosoite(String s) {
+        katuosoite = s;
+        return null;
+    }
+    
+    
+    /**
+     * @return katuosoite
+     */
+    public String getKatuosoite() {
+        return katuosoite;
+    }
+
+    /**
+     * @return postiosoite
+     */
+    public String getPostiosoite() {
+        return postiosoite;
+    }
+
+    
+    
+     /**
+      * asettaa osallistujalle postiosoitteen
+      * @param s postiosoite
+      * @return null jos ok
+      */
+     public String setPostiosoite(String s) {
+         postiosoite = s;
+         return null;
+     }
+     
+      /**
+       * asettaa osallistujalle puhelinnumeron
+       * @param s puhelinnumero
+       * @return null jos ok
+       */
+      public String setPuhelin(String s) {
+          puhelinnro = s;
+          return null;
+      } 
+      
+      /**
+       * @return puhelinnumero
+       */
+      public String getPuhelin() {
+          return puhelinnro;
+      }
+      
+      
+      /**
+       * @return email
+       */
+      public String getEmail() {
+          return email;
+      }
+
+
+      
+      /**
+       * asettaa osallistujalle emailin
+       * @param s email
+       * @return null jos ok
+       */
+      public String setEmail(String s) {
+          email = s;
+          return null;
+      } 
+      
+      
     /**
      * saa merkkijonorivin josta erotellaan osallistujan tiedot
      * ja lisätään ne osallistujalle
@@ -181,6 +282,14 @@ public class Osallistuja {
 
     }
     
+    
+    @Override
+    public Osallistuja clone() throws CloneNotSupportedException {
+        Osallistuja uusi;
+        uusi = (Osallistuja) super.clone();
+        return uusi;
+    }
+    
   
     /**
      * @param args ei käytetä
@@ -198,6 +307,12 @@ public class Osallistuja {
     aku2.tulosta(System.out);
     
     }
+
+
+   
+
+
+   
 
 
     

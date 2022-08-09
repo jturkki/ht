@@ -22,6 +22,7 @@ public class Osallistujat {
     
     private int lkm = 0;
     private Osallistuja[] alkiot;
+    private boolean muutettu = false;
     
     
     /**
@@ -66,6 +67,39 @@ public class Osallistujat {
         if (lkm >= alkiot.length) alkiot = Arrays.copyOf(alkiot, lkm+20);
         alkiot[lkm] = osallistuja;
         lkm++;
+        muutettu = true;
+    }
+    
+    
+    /**
+     * Korvaa osallistujan tietorakenteessa. Ottaa osallistujan omistukseensa.
+     * Etsitään samalla id:llä oleva osallistuja. Jos ei löydy,
+     * niin lisätään uutena osallistujana.
+     * @param osall osallistujan viite. Huom. tietorakenne muuttuu omistajaksi.
+     * @example
+     * <pre name="test">
+     * #THROWS CloneNotSupportedException
+     * Osallistujat ost = new Osallistujat();
+     * Osallistuja os1 = new Osallistuja(), os2 = new Osallistuja();
+     * os1.rekisteroi(); os2.rekisteroi();
+     * ost.getLkm() === 0;
+     * ost.korvaaTaiLisaa(os1); ost.getLkm() === 1; 
+     * ost.korvaaTaiLisaa(os2); ost.getLkm() === 2;
+     * Osallistuja os3 = os1.clone();
+     * os3.setKatuosoite("kukkuu 2");
+     * ost.korvaaTaiLisaa(os3); ost.getLkm() === 2;
+     * </pre>
+     */
+    public void korvaaTaiLisaa(Osallistuja osall) {
+        int id = osall.getId();
+        for (int i=0; i<lkm; i++) {
+            if ( alkiot[i].getId() == id) {
+                alkiot[i] = osall;
+                muutettu = true;
+                return;
+            }
+        }
+        lisaa(osall);
     }
     
     
@@ -93,6 +127,7 @@ public class Osallistujat {
      * @throws SailoException jos tallennus epäonnistuu
      */
     public void tallenna(String tiedNimi) throws SailoException {
+        if (!muutettu) return;
         File fileNimi = new File(tiedNimi);
         try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/nimet.txt", false))){
             for (int i=0; i<getLkm(); i++) {
@@ -125,6 +160,7 @@ public class Osallistujat {
         } catch ( FileNotFoundException e ) {
             throw new SailoException("Ei saa luettua tiedostoa " + nimi);
         }
+        muutettu = false;
     }
 
     /**
@@ -165,5 +201,7 @@ public class Osallistujat {
     
     
     }
+
+   
 
 }

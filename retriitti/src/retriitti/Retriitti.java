@@ -124,6 +124,17 @@ public class Retriitti {
         }
     }
    
+    /**
+     * Korvaa osallistujan tietorakenteessa. Ottaa osallistujan
+     * omistukseensa. Etsitään samalla id:llä oleva osallistuja.
+     * Jos ei löydy, niin lisätään uutena osallistujana
+     * @param osall lisättävän osallistujan viite. huom. tietorakenne muuttuu omistajaksi
+     */
+    public void korvaaTaiLisaa(Osallistuja osall) {
+        osallistujat.korvaaTaiLisaa(osall);
+        
+    }
+    
 
     /**
      * @param args ei käytössä
@@ -164,5 +175,8 @@ public class Retriitti {
             workshop.tulosta(System.out);
         }
     }
+
+
+   
 
 }
