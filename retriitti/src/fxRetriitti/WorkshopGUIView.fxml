@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fi.jyu.mit.fxgui.ModalController">
+<BorderPane prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxRetriitti.WorkshopGUIController">
    <top>
       <Label text="Workshop" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -69,37 +69,37 @@
                   <Insets left="15.0" />
                </GridPane.margin>
             </Label>
-            <TextField GridPane.columnIndex="1">
+            <TextField fx:id = "editNimi" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id = "editSijainti" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id = "editMaxOs" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id = "editOhjaaja" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id = "editKesto" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id = "editPvm" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
             </TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id = "editKlo" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets right="15.0" />
                </GridPane.margin>
@@ -110,12 +110,12 @@
    <bottom>
       <HBox prefHeight="55.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleDefaultOK" text="Tallenna">
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#handleOK" text="Tallenna">
                <HBox.margin>
                   <Insets left="20.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleDefaultCancel" text="Peru">
+            <Button cancelButton="true" mnemonicParsing="false" onAction="#handleCancel" text="Peru">
                <HBox.margin>
                   <Insets left="15.0" top="20.0" />
                </HBox.margin>

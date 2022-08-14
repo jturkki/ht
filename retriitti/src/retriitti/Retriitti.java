@@ -13,7 +13,7 @@ public class Retriitti {
     private final Osallistujat osallistujat = new Osallistujat();
     private final Workshopit workshopit = new Workshopit();
     private final OsallistumisetWorkshoppeihin osallistumiset = new OsallistumisetWorkshoppeihin();
-    
+     
     
 
     /**
@@ -64,6 +64,9 @@ public class Retriitti {
         ArrayList<Integer> wsLista = osallistumiset.annaWSlistaus(osallistuja);
         return wsLista;
     }
+    
+    
+   
     
     /**
      * lisää osallistujan retriittiin

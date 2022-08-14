@@ -12,7 +12,7 @@ import javafx.fxml.FXMLLoader;
  * Pääohjelma retriitti-ohjelman käynnistämiseksi
  * 
  * @author jyrit
- * @version 11.6.2022
+ * @version 11.6.2022 
  *
  */
 public class RetriittiMain extends Application {

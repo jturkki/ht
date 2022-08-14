@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
-import fi.jyu.mit.fxgui.ModalController;
+
 import fi.jyu.mit.fxgui.StringGrid;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -22,6 +22,7 @@ import retriitti.OsallistuuWorkshoppiin;
 import retriitti.Retriitti;
 
 import retriitti.Workshop;
+
 
 /**
  * Luokka käyttöliittymän tapahtumien hoitamiseksi
@@ -96,8 +97,6 @@ public class RetriittiGUIController implements Initializable {
     @FXML private void handleLisaaWorkshop() {
      
         uusiWorkshop();
-        
-        //   ModalController.showModal(RetriittiGUIController.class.getResource("WorkshopGUIView.fxml"), "Workshop", null, "");
     }
     
     /**
@@ -107,12 +106,7 @@ public class RetriittiGUIController implements Initializable {
         Dialogs.showMessageDialog("Workshopin poisto tästä");
     }
     
-    /**
-     * Ohjaajan muokkaus
-     */
-    @FXML private void handleMuokkaaOhjaaja() {
-        ModalController.showModal(RetriittiGUIController.class.getResource("OhjaajaGUIView.fxml"), "Ohjaaja", null, "");
-    }
+    
     
     /**
      * Apua 
@@ -166,7 +160,6 @@ public class RetriittiGUIController implements Initializable {
    
    
    private void alusta() {
-
        chooserOsallistujat.clear();
        chooserOsallistujat.addSelectionListener(e -> naytaOsallistuja());
        TextField[] edts1 = {editSukunimi, editEtunimi, editHetu, editKatuosoite, editPostiosoite, editPuhelin, editEmail};
@@ -174,16 +167,17 @@ public class RetriittiGUIController implements Initializable {
    }
    
    
+   
    private void naytaOsallistuja() {
        Osallistuja osallistujaKohdalla = chooserOsallistujat.getSelectedObject();
        if (osallistujaKohdalla == null) return;
-       
-     
        OsallistujaGUIController.naytaOsallistuja(edits, osallistujaKohdalla);
        naytaWorkshopit(osallistujaKohdalla);
        
    }
     
+   
+   
    
    private void naytaWorkshopit(Osallistuja osallistuja) {
        tableWorkshopit.clear();
@@ -194,7 +188,7 @@ public class RetriittiGUIController implements Initializable {
        if (osWS.size() == 0 ) return;
        
        for (Integer i: osWS) {
-           Workshop workshop = retriitti.annaWorkshop(i.intValue());
+           Workshop workshop = retriitti.annaWorkshop(i.intValue()-1);
            naytaWorkshop(workshop);      
        }
    }
@@ -302,10 +296,12 @@ public class RetriittiGUIController implements Initializable {
     */
    private void uusiWorkshop() {
        Workshop uusi = new Workshop();
+       
+       uusi = WorkshopGUIController.kysyWorkshop(null, uusi);
+       if (uusi == null) return;
        uusi.rekisteroi();
-       uusi.asetaJoku();
-      
-       retriitti.lisaa(uusi); 
+       retriitti.lisaa(uusi);
+        
    }
    
    
@@ -316,9 +312,27 @@ public class RetriittiGUIController implements Initializable {
        Osallistuja osallistujaKohdalla = chooserOsallistujat.getSelectedObject();
        if (osallistujaKohdalla == null) return;
        
-       OsallistuuWorkshoppiin uusi = new OsallistuuWorkshoppiin();
-       uusi.asetaJoku(osallistujaKohdalla);
-       retriitti.lisaaOsWs(uusi);
-       hae(osallistujaKohdalla.getId());
+       int wsnro = valitseWorkshop();
+       if (wsnro != -1) {
+           OsallistuuWorkshoppiin uusi = new OsallistuuWorkshoppiin();
+           uusi.asetaWs(osallistujaKohdalla, wsnro);
+           retriitti.lisaaOsWs(uusi);
+           hae(osallistujaKohdalla.getId());
+       }
+   }
+   
+   
+   private int valitseWorkshop() {
+        if (retriitti.getWorkshoppeja()<1) return -1;
+        ArrayList<Workshop> alWs = new ArrayList<Workshop>();
+        for (int i= 0; i<retriitti.getWorkshoppeja(); i++)
+            alWs.add(retriitti.annaWorkshop(i));
+    
+        ArrayList<Workshop> alWs2 = new ArrayList<Workshop>();
+        alWs2 = WSValintaGUIController.kysyWs(null, alWs);
+        int ws = alWs2.get(0).getId();
+        return ws;
+    
+      
    }
 }

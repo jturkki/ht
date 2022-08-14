@@ -1,4 +1,3 @@
-1| Tuunaus35| Kellari| 6| Albert Einstein
-2| Tuunaus43| Kellari| 6| Albert Einstein
-3| Tuunaus13| Kellari| 6| Albert Einstein
-4| Tuunaus78| Kellari| 6| Albert Einstein
+1| eka| eka| 33| kj| 4| 3| 2
+2| toka| tokal| 3| 5| lkj| 55| 3
+3| kolmas| kokk| 6| jkkaj| 3| 3| 3

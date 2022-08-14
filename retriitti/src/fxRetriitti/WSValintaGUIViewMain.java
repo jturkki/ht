@@ -8,21 +8,21 @@ import javafx.fxml.FXMLLoader;
 
 
 /**
- * @author jyrit
- * @version 19.6.2022
+ * @author jyrit 
+ * @version 14.8.2022
  *
  */
-public class OhjaajaMain extends Application {
+public class WSValintaGUIViewMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader ldr = new FXMLLoader(getClass().getResource("OhjaajaGUIView.fxml"));
+            FXMLLoader ldr = new FXMLLoader(getClass().getResource("WSValintaGUIView.fxml"));
             final Pane root = ldr.load();
-            // final OhjaajaGUIController ohjaajaCtrl = (OhjaajaGUIController) ldr.getController();
+            //final WSValintaGUIViewGUIController wsvalintaguiviewCtrl = (WSValintaGUIViewGUIController) ldr.getController();
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("ohjaaja.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("wsvalintaguiview.css").toExternalForm());
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Ohjaaja");
+            primaryStage.setTitle("WSValintaGUIView");
             primaryStage.show();
         } catch(Exception e) {
             e.printStackTrace();

@@ -1,4 +1,3 @@
-1| Ankka| Akukk| 050965-755L| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-2| Ankka56| Aku| 050445-0079| Paratiisitie| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-3| Ankka62| Aku| 240852-407F| Paratiisitie 13| 00100 Ankkis| 0400111222| aku@ankkalinna.fi
-4| Hanhi| Hannu| 111277-123L| Hannula 2| 1233 hanki| 23423 | aldkfj
+1| Antti| Aalto| 111299-1239| lskj| jj| 234| 55
+2| Kokko| Kake| 211277-1232| jsdlfkj| lsakjd| djkj| jjsalkf
+3| Penala| Pena| 111170-432Y| laskjdf| jfj| ljk| lkj

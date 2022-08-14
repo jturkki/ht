@@ -38,7 +38,7 @@ public class OsallistuuWorkshoppiin {
         this.wsid = wsid;
     }
     
-    /**
+    /** 
      * @return osallistujan id
      */
     public int getOsallistuja() {
@@ -95,18 +95,20 @@ public class OsallistuuWorkshoppiin {
     }
 
 
-     private static int testi = 0;  // TODO: poista tämä
+   
   
      /**
      * asettaa osallistujan workshoppiin
      * @param osallistuja joka liittyy workshoppiin
+     * @param wsnro workshopin id,  johon osallistuu
      */
-    public void asetaJoku(Osallistuja osallistuja) {            // TODO: välitä tänne myös workshop 
+    public void asetaWs(Osallistuja osallistuja, int wsnro) {            
+
+        this.osid = osallistuja.getId();
+        this.wsid = wsnro;
         this.id = seuraavanro;
         seuraavanro++;
-        this.osid = osallistuja.getId();
-        this.wsid = testi;
-        testi++;
+
         
     }
     

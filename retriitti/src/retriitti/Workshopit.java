@@ -81,7 +81,7 @@ public class Workshopit {
         }
     }
 
-    
+     
     /**
      * lukee workshoppien tiedot tiedostosta
      * @param tiedNimi hakemiston nimi
