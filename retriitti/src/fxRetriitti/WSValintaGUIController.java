@@ -32,14 +32,12 @@ public class WSValintaGUIController implements ModalControllerInterface<ArrayLis
     
     @FXML private void handleCancel() {
         workshop = null;
+        alWs.clear();
         ModalController.closeStage(lopetus);
     }
     
 
-    /**
-     * @param url d
-     * @param bundle d
-     */
+  
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         alusta();

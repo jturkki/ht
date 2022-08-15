@@ -1,3 +1,4 @@
 1| eka| eka| 33| kj| 4| 3| 2
 2| toka| tokal| 3| 5| lkj| 55| 3
 3| kolmas| kokk| 6| jkkaj| 3| 3| 3
+4| Torspoilu| Takahikiä| 5| Kake| 3| 6.6.2222| 12

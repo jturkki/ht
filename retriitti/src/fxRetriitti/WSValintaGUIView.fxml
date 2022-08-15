@@ -9,7 +9,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxRetriitti.WSValintaGUIController">
    <top>
-      <Label fx:id = "lopetus" text="Valitse Workshop" BorderPane.alignment="CENTER" />
+      <Label fx:id="lopetus" text="Valitse Workshop" BorderPane.alignment="CENTER" />
    </top>
    <center>
       <ListChooser fx:id="chooserWorkshopit" BorderPane.alignment="CENTER" />
@@ -17,12 +17,12 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="handleOK" mnemonicParsing="false" text="OK">
+            <Button mnemonicParsing="false" onAction="#handleOK" text="OK">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="handleCancel" mnemonicParsing="false" text="Cancel">
+            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
