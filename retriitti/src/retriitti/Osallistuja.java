@@ -12,7 +12,20 @@ import static kanta.HetuTarkistus.*;
  * Retriitin osallistuja
  * @author jyrit
  * @version 12.7.2022
- *
+ *@example
+ * <pre name="test">
+ * Osallistuja aa = new Osallistuja();
+ * aa.parse(" 1| Hopo| Hessu| 030201-111C|katuos 1|00001 Hopola|0400111222|hessu@hopo.fi");
+ * aa.getNimi() === "Hopo Hessu";
+ * aa.getEtunimi() === "Hessu";
+ * aa.getSukunimi() === "Hopo";
+ * aa.getHetu() === "030201-111C";
+ * aa.getKatuosoite() === "katuos 1";
+ * aa.getPostiosoite() === "00001 Hopola";
+ * aa.getPuhelin() === "0400111222";
+ * aa.getEmail() === "hessu@hopo.fi";
+ * 
+ * </pre>
  */
 public class Osallistuja implements Cloneable {
     
@@ -173,6 +186,14 @@ public class Osallistuja implements Cloneable {
      * asettaa osallistujalle hetun
      * @param s hetu
      * @return null jos ok
+     * @example
+     * <pre name="test">
+     * Osallistuja aku = new Osallistuja();
+     * aku.setHetu("401150") === "Liian suuri päivämäärä";
+     * aku.setHetu("001088") === "Liian pieni päivämäärä";
+     * aku.setHetu("121288-1") === "Yksilöosa liian lyhyt";
+     * aku.setHetu("311212-2317") === null;
+     * </pre>
      */
     public String setHetu(String s) {
         String virhe = hetut.tarkista(s);

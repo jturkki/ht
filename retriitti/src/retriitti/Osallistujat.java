@@ -195,7 +195,7 @@ public class Osallistujat {
     try {
         osallistujat.tallenna("testi");
     } catch (SailoException e) {
-        // TODO Auto-generated catch block
+        
         e.printStackTrace();
     }
     

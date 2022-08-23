@@ -32,17 +32,17 @@ public class HetuTarkistus  {
      * hetut.tarkista("k")           === "Hetu liian lyhyt";
      * hetut.tarkista("12121k")      === "Alkuosassa saa olla vain numeroita";
      * hetut.tarkista("121212")      === null;   // sallitaan pelkk syntymaika
-     * hetut.tarkista("001212")      === "Liian pieni pivmr";
-     * hetut.tarkista("321212")      === "Liian suuri pivmr";
-     * hetut.tarkista("300212")      === "Liian suuri pivmr";
-     * hetut.tarkista("310412")      === "Liian suuri pivmr";
+     * hetut.tarkista("001212")      === "Liian pieni päivämäärä";
+     * hetut.tarkista("321212")      === "Liian suuri päivämäärä";
+     * hetut.tarkista("300212")      === "Liian suuri päivämäärä";
+     * hetut.tarkista("310412")      === "Liian suuri päivämäärä";
      * hetut.tarkista("121312")      === "Liian suuri kuukausi";
      * hetut.tarkista("120012")      === "Liian pieni kuukausi";
      * hetut.tarkista("121212B222Q") === "Vr erotinmerkki";
-     * hetut.tarkista("121212-2k2Q") === "Yksilosassa kirjaimia";
-     * hetut.tarkista("121212-2")    === "Yksilosa liian lyhyt";
-     * hetut.tarkista("121212-")     === "Yksilosa liian lyhyt";
-     * hetut.tarkista("121212-12345")=== "Hetu liian pitk";
+     * hetut.tarkista("121212-2k2Q") === "Yksilöosassa kirjaimia";
+     * hetut.tarkista("121212-2")    === "Yksilöosa liian lyhyt";
+     * hetut.tarkista("121212-")     === "Yksilöosa liian lyhyt";
+     * hetut.tarkista("121212-12345")=== "Hetu liian pitkä";
      * hetut.tarkista("121212-222S") === "Tarkistusmerkin kuuluisi olla N";
      * hetut.tarkista("121212-222N") === null;
      * hetut.tarkista("121212-231Y") === null;
@@ -60,15 +60,15 @@ public class HetuTarkistus  {
         if ( kk < 1 )  return "Liian pieni kuukausi";
         if ( 12 < kk ) return "Liian suuri kuukausi";
         int pvmkk = KUUKAUDET[kk-1];
-        if ( pv < 1 )  return "Liian pieni pivmr";
-        if ( pvmkk < pv ) return "Liian suuri pivmr";
+        if ( pv < 1 )  return "Liian pieni päivämäärä";
+        if ( pvmkk < pv ) return "Liian suuri päivämäärä";
         if ( pituus == 6 ) return null;   // pelkk syntymaika kelpaa
-        if ( pituus < 11 ) return "Yksilosa liian lyhyt";
-        if ( pituus > 11 ) return "Hetu liian pitk";
+        if ( pituus < 11 ) return "Yksilöosa liian lyhyt";
+        if ( pituus > 11 ) return "Hetu liian pitkä";
         String erotin = hetu.substring(6,7);
         if ( !onkoVain(erotin,"+-A")) return "Vr erotinmerkki";
         String yksilo = hetu.substring(7,10);
-        if ( !onkoVain(yksilo,NUMEROT)) return "Yksilosassa kirjaimia";
+        if ( !onkoVain(yksilo,NUMEROT)) return "Yksilöosassa kirjaimia";
         char merkki = hetunTarkistusMerkki(hetu);
         if ( hetu.charAt(10) != merkki ) return "Tarkistusmerkin kuuluisi olla " + merkki;
         return null;
