@@ -7,10 +7,22 @@ import fi.jyu.mit.ohj2.Mjonot;
 import kanta.HetuTarkistus;
 
 /**
- * Workshop
+ * Workshop joka kuuluu retriittiin
  * @author jyrit
  * @version 18.7.2022
- *
+ *@example
+ * <pre name="test">
+ * Workshop wo = new Workshop();
+ * wo.parse(" 3 |  kailotus | verstas   | 5| Arvo Naakka| 2 | 12.12.2022| 14:30");
+ * wo.getId() === 3;
+ * wo.getNimi() === "kailotus";
+ * wo.getSijainti() === "verstas";
+ * wo.getMaxOs() === "5";
+ * wo.getOhjaaja() === "Arvo Naakka";
+ * wo.getPvm() === "12.12.2022";
+ * wo.getKlo() === "14:30";
+ * wo.toString() === "3| kailotus| verstas| 5| Arvo Naakka| 2| 12.12.2022| 14:30";
+ * </pre>
  */
 public class Workshop {
     
@@ -69,6 +81,14 @@ public class Workshop {
     /**
      * antaa workshopille seuraavan vapaan id-numeron
      * @return id numero
+     * @example
+     * <pre name="test">
+     * Workshop w1 = new Workshop();
+     * Workshop w2 = new Workshop();
+     * w1.rekisteroi();
+     * w2.rekisteroi();
+     * w2.getId() - w1.getId() === 1;
+     * </pre>
      */
     public int rekisteroi() {
         id = seuraavaNumero;
@@ -229,9 +249,9 @@ public class Workshop {
      * @example
      * <pre name="test">
      * Workshop ws = new Workshop();
-     * ws.parse(" 3 |  kailotus | verstas   | 5| Arvo Naakka");
+     * ws.parse(" 3 |  kailotus | verstas   | 5| Arvo Naakka| 2 | 12.12.2022| 14:30");
      * ws.getId() === 3;
-     * ws.toString() === "3| kailotus| verstas| 5| Arvo Naakka";
+     * ws.toString() === "3| kailotus| verstas| 5| Arvo Naakka| 2| 12.12.2022| 14:30";
      * </pre>
      */
     public void parse(String rivi) {

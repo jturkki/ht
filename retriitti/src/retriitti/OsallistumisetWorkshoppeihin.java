@@ -13,9 +13,24 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
+ * Pitää kirjaa osallistujien osallistumisista workshoppeihin
+ * 
  * @author jyrit
  * @version 26.7.2022
- *
+ *@example
+ * <pre name="test">
+ * OsallistumisetWorkshoppeihin osws = new OsallistumisetWorkshoppeihin();
+ * OsallistuuWorkshoppiin o1 = new OsallistuuWorkshoppiin();
+ * OsallistuuWorkshoppiin o2 = new OsallistuuWorkshoppiin();
+ * OsallistuuWorkshoppiin o3 = new OsallistuuWorkshoppiin();
+ * o1.parse("1|1|1");
+ * o2.parse("2|1|2");
+ * o3.parse("3|2|1");
+ * osws.lisaaOsWs(o1);
+ * osws.lisaaOsWs(o2);
+ * osws.lisaaOsWs(o3);
+ * osws.anna(2) === o3;
+ * </pre>
  */
 public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshoppiin> {
     

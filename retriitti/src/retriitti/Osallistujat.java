@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
+ * Retriitin Osallistujat
+ * 
  * @author jyrit
  * @version 12.7.2022
  *

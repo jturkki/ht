@@ -8,9 +8,19 @@ import java.io.PrintStream;
 import fi.jyu.mit.ohj2.Mjonot;
 
 /**
+ * Osallistujan osallistuminen workshoppiin
+ * 
  * @author jyrit
  * @version 26.7.2022
- *
+ * @example
+ * <pre name="test">
+ * OsallistuuWorkshoppiin osws = new OsallistuuWorkshoppiin();
+ * osws.parse("2|1|3");
+ * osws.getId() === 2;
+ * osws.toString() === "2| 1| 3";
+ * osws.getOsallistuja() === 1;
+ * osws.getWorkshop() === 3;
+ * </pre>
  */
 public class OsallistuuWorkshoppiin {
     

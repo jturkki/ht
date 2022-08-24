@@ -37,8 +37,27 @@ public class Workshopit {
     }
 
     /**
-     * lisää uuden workshopin tietorakenteeseen. ottaa workshopin omistukseensa.
-     * @param workshop lisättävän workshopin viite
+     * Lisää uuden workshopin tietorakenteeseen. Ottaa workshopin
+     * omistukseensa.
+     * @param workshop lisättävän workshopin viite. Huom tietorakenne muuttuu osallistujaksi.
+     * @example
+     * <pre name="test">
+     * Workshopit ws = new Workshopit();
+     * Workshop ws1 = new Workshop(), ws2 = new Workshop();
+     * ws.getLkm() === 0;
+     * ws.lisaa(ws1); ws.getLkm() === 1;
+     * ws.lisaa(ws2); ws.getLkm() === 2;
+     * ws.lisaa(ws1); ws.getLkm() === 3;
+     * ws.anna(0) === ws1;
+     * ws.anna(1) === ws2;
+     * ws.anna(2) === ws1;
+     * ws.anna(1) == ws1 === false;
+     * ws.anna(1) == ws2 === true;
+     * ws.anna(3) === ws1; #THROWS IndexOutOfBoundsException 
+     * ws.lisaa(ws1); ws.getLkm() === 4;
+     * ws.lisaa(ws1); ws.getLkm() === 5;
+     * ws.lisaa(ws1);  
+     * </pre>
      */
     public void lisaa(Workshop workshop) {
         if (lkm >= alkiot.length) alkiot = Arrays.copyOf(alkiot, lkm + 10);

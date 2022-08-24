@@ -4,9 +4,45 @@ import java.util.ArrayList;
 
 
 /**
+ * Retriitti-luokka, joka huolehtii osallistujista, workshopeista sekä 
+ * osallistumisista workshoppeihin.
+ * 
  * @author jyrit
  * @version 12.7.2022
- *
+ *@example
+ * <pre name="test">
+ * Retriitti retriitti = new Retriitti();
+ * Osallistuja aku = new Osallistuja();
+ * Osallistuja aku2 = new Osallistuja();
+ * Workshop homma1 = new Workshop();
+ * Workshop homma2 = new Workshop();
+ * aku.parse("1|Ankka|Aku|010101-111D| Akukatu 1 | 11111 Alinna | 099111222 | aku@alinna");
+ * aku2.parse("2|Ankka|Tupu|030201-111C| Tupukatu 2 | 21112 Alinna | 099222222 | tupu@alinna");
+ * homma1.parse(" 1 |  kailotus | verstas   | 2| Arvo Naakka| 1 | 12.12.2022| 14:30");
+ * homma2.parse(" 2 |  hoilotus | kellari   | 3| Kaapo Kakko| 3 | 11.12.2022| 12:30");
+ * retriitti.lisaa(aku);
+ * retriitti.lisaa(aku2);
+ * retriitti.lisaa(homma1);
+ * retriitti.lisaa(homma2);
+ * retriitti.getOsallistujia() === 2;
+ * retriitti.getWorkshoppeja() === 2;
+ * OsallistuuWorkshoppiin o1 = new OsallistuuWorkshoppiin();
+ * OsallistuuWorkshoppiin o2 = new OsallistuuWorkshoppiin();
+ * OsallistuuWorkshoppiin o3 = new OsallistuuWorkshoppiin();
+ * o1.parse("1|1|1");
+ * o2.parse("2|1|2");
+ * o3.parse("3|2|1");
+ * retriitti.lisaaOsWs(o1);
+ * retriitti.lisaaOsWs(o2);
+ * retriitti.lisaaOsWs(o3);
+ * retriitti.annaOsallistuja(1) === aku2;
+ * retriitti.annaWorkshop(1) === homma2;
+ * #import java.util.ArrayList;
+ * #import java.util.Arrays;
+ * ArrayList<Integer> lista = new ArrayList<Integer>();
+ * lista = retriitti.annaWorkshopit(aku);
+ * lista.toString() === "[1, 2]";
+ * </pre>
  */
 public class Retriitti {
     
@@ -106,7 +142,7 @@ public class Retriitti {
             
             
         } catch (SailoException e) {
-            // TODO Auto-generated catch block
+            
             e.printStackTrace();
         }
         
