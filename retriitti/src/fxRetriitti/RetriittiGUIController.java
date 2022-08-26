@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-
+import fi.jyu.mit.fxgui.ComboBoxChooser;
 import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 
@@ -44,6 +44,8 @@ public class RetriittiGUIController implements Initializable {
     @FXML TextField editPuhelin;
     @FXML TextField editEmail;
     @FXML StringGrid<Workshop> tableWorkshopit;
+    @FXML TextField hakuehto;
+    @FXML ComboBoxChooser<String> cbKentat;
     
     /**
      * @param url s
@@ -149,6 +151,11 @@ public class RetriittiGUIController implements Initializable {
    @FXML private void handleTulosta() {
        tulosta();
    }
+   
+   
+   @FXML private void handleHakuehto() {
+       hae(0);
+   }
   
 //====================================================================   
 
@@ -156,6 +163,7 @@ public class RetriittiGUIController implements Initializable {
    
    
    private Retriitti retriitti;
+   private static Osallistuja apuOsallistuja;
    
    
    
@@ -164,6 +172,15 @@ public class RetriittiGUIController implements Initializable {
        chooserOsallistujat.addSelectionListener(e -> naytaOsallistuja());
        TextField[] edts1 = {editSukunimi, editEtunimi, editHetu, editKatuosoite, editPostiosoite, editPuhelin, editEmail};
        edits = edts1;
+       
+       cbKentat.clear();
+       cbKentat.add("nimi", null);
+       cbKentat.add("hetu", null);
+       cbKentat.add("katuosoite", null);
+       cbKentat.add("postiosoite", null);
+       cbKentat.add("puhelin", null);
+       cbKentat.add("email", null);
+       cbKentat.getSelectionModel().select(0);
    }
    
    
