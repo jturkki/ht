@@ -5,6 +5,7 @@ package fxRetriitti;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.ComboBoxChooser;
@@ -270,15 +271,16 @@ public class RetriittiGUIController implements Initializable {
            Osallistuja kohdalla = chooserOsallistujat.getSelectedObject();
            if (kohdalla != null)  osnro = kohdalla.getId();
        }
+       int k = cbKentat.getSelectionModel().getSelectedIndex() + 1;
+       
        chooserOsallistujat.clear();
        String ehto = hakuehto.getText();
+       Collection<Osallistuja> osallistujat = retriitti.etsi(ehto, k);
        int index = 0;
        int ci = 0;
-       for (int i = 0; i < retriitti.getOsallistujia(); i++) {
-           Osallistuja osallistuja = retriitti.annaOsallistuja(i);
-           if (!osallistuja.getNimi().contains(ehto)) continue;
-           if (osallistuja.getId()== osnro) index = ci;
-           chooserOsallistujat.add("" + osallistuja.getNimi(), osallistuja);
+       for (Osallistuja os: osallistujat) {
+           if (os.getId()== osnro) index = ci;
+           chooserOsallistujat.add("" + os.getNimi(), os);
            ci++;
        }
        chooserOsallistujat.setSelectedIndex(index);

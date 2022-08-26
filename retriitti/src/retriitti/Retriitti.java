@@ -1,6 +1,7 @@
 package retriitti;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 /**
@@ -174,6 +175,15 @@ public class Retriitti {
         
     }
     
+    
+    /**
+     * @param ehto jota vastaavat osallistujat listataan
+     * @param k kentän indeksi mistä etsitään
+     * @return lista osallistujista
+     */
+    public Collection<Osallistuja> etsi(String ehto, int k) {
+        return osallistujat.etsi(ehto, k);
+    }
 
     /**
      * @param args ei käytössä
@@ -214,6 +224,9 @@ public class Retriitti {
             workshop.tulosta(System.out);
         }
     }
+
+
+   
 
 
    

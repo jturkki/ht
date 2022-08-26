@@ -311,6 +311,24 @@ public class Osallistuja implements Cloneable {
         return uusi;
     }
     
+    
+    /**
+     * @param k minkä kentän arvo palautetaan
+     * @return halutun kentän arvo
+     */
+    public String anna(int k) {
+        switch (k) {
+            case 1: return getNimi();
+            case 2: return hetu;
+            case 3: return katuosoite;
+            case 4: return postiosoite;
+            case 5: return puhelinnro;
+            case 6: return email;
+        default:
+            break;
+        }
+        return null;
+    }
   
     /**
      * @param args ei käytetä

@@ -8,7 +8,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
 
 /**
@@ -118,6 +120,23 @@ public class Osallistujat {
     }
     
     
+    
+    /**
+     * @param ehto jota vastaavat osallistujat listataan
+     * @param k kentän indeksi mistä etsitään
+     * @return lista osallistujista
+     */
+    public Collection<Osallistuja> etsi(String ehto, int k) {
+        Collection<Osallistuja> lista = new ArrayList<Osallistuja>();
+        for (int i=0; i< getLkm(); i++) {
+            Osallistuja os = anna(i);
+            if (os.anna(k).contains(ehto))
+                lista.add(os);
+        }
+            
+        return lista;
+    }
+    
     /**
      * Tallentaa osallistujien tiedot tiedostoon
      * Tiedot muodossa:
@@ -203,7 +222,5 @@ public class Osallistujat {
     
     
     }
-
-   
 
 }
