@@ -106,7 +106,7 @@ public class RetriittiGUIController implements Initializable {
      * Workshopin poisto
      */
     @FXML private void handlePoistaWorkshop() {
-        Dialogs.showMessageDialog("Workshopin poisto tästä");
+        poistaWorkshop();
     }
     
     
@@ -332,6 +332,24 @@ public class RetriittiGUIController implements Initializable {
         
    }
    
+   private int valitseWorkshop() {
+       if (retriitti.getWorkshoppeja()<1) return -1;
+       ArrayList<Workshop> alWs = new ArrayList<Workshop>();
+       for (int i= 0; i<retriitti.getWorkshoppeja(); i++)
+           alWs.add(retriitti.annaWorkshop(i));
+   
+       ArrayList<Workshop> alWs2 = new ArrayList<Workshop>();
+       alWs2 = WSValintaGUIController.kysyWs(null, alWs);
+       int ws = -1;
+       if (!(alWs2.get(0) == null))  ws = alWs2.get(0).getId();
+       return ws; 
+  }
+   
+   private void poistaWorkshop() {
+       int wsnr = valitseWorkshop();
+       if (wsnr != -1) retriitti.poistaWorkshop(wsnr);
+       hae(0);
+   }
    
    /**
     * lisätään osallistujalle uusi workshop
@@ -360,18 +378,4 @@ public class RetriittiGUIController implements Initializable {
        hae(kohdalla.getId());
    }
    
-   
-   private int valitseWorkshop() {
-        if (retriitti.getWorkshoppeja()<1) return -1;
-        ArrayList<Workshop> alWs = new ArrayList<Workshop>();
-        for (int i= 0; i<retriitti.getWorkshoppeja(); i++)
-            alWs.add(retriitti.annaWorkshop(i));
-    
-        ArrayList<Workshop> alWs2 = new ArrayList<Workshop>();
-        alWs2 = WSValintaGUIController.kysyWs(null, alWs);
-        int ws = alWs2.get(0).getId();
-        return ws;
-    
-      
-   }
 }

@@ -56,7 +56,7 @@ public class Workshopit {
      * ws.anna(3) === ws1; #THROWS IndexOutOfBoundsException 
      * ws.lisaa(ws1); ws.getLkm() === 4;
      * ws.lisaa(ws1); ws.getLkm() === 5;
-     * ws.lisaa(ws1);  
+     * ws.lisaa(ws1); ws.getLkm() === 6;
      * </pre>
      */
     public void lisaa(Workshop workshop) {
@@ -68,7 +68,7 @@ public class Workshopit {
 
     /**
      * Palauttaa viitteen i:nteen workshoppiin
-     * @param i monennenko workshopin viiten halutaan
+     * @param i monennenko workshopin viite halutaan
      * @return viite workshoppiin, jonka indeksi on i
      * @throws IndexOutOfBoundsException jos i ei ole sallitulla alueella
      */
@@ -76,6 +76,26 @@ public class Workshopit {
         if ( i < 0 || this.lkm <= i)
             throw new IndexOutOfBoundsException("Laiton indeksi: " + i);
         return alkiot[i];
+    }
+    
+    /**
+     * poistaa tietorakenteesta yhden workshopin
+     * @param workshop joka poistetaan
+     */
+    public void poista(Workshop workshop) {
+        int i = 0;
+        while (this.lkm > 0) {
+
+            if (alkiot[i] == workshop) {
+                for (int j = i; j<lkm-1; j++)
+                    alkiot[j] = alkiot[j+1];
+                break;
+            }   
+            i++;      
+        }
+        alkiot[lkm-1] = null;
+        lkm--;
+        muutettu = true;
     }
 
 
@@ -154,7 +174,7 @@ public class Workshopit {
         try {
             workshopit.tallenna("wstesti.txt");
         } catch (SailoException e) {
-            // TODO Auto-generated catch block
+           
             e.printStackTrace();
         }
     }

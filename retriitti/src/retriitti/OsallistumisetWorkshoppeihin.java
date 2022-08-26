@@ -60,21 +60,27 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
     
 
     /**
-     * @param os osallistuja jonka workshop poistetaan
-     * @param ws workshop joka poistetaan
+     * poistaa osallistumiset workshoppeihin
+     * jos molemmat parametrit, poistetaan niiden mukainen
+     * osallistuminen. Jos jompikumpi parametri null,
+     * poistetaan kaikki osallistumiset joissa toinen parametri
+     * @param os osallistuja jonka workshop poistetaan, 
+     *        jos null, poistetaan workshop kaikilta
+     * @param ws workshop joka poistetaan, jos null,
+     *        poistetaan kaikki osallistujan workshopit
      */
     public void poista(Osallistuja os, Workshop ws) {
         Iterator<OsallistuuWorkshoppiin> iter = iterator();
         ArrayList<OsallistuuWorkshoppiin> poistot = new ArrayList<OsallistuuWorkshoppiin>();
         while (iter.hasNext()) {
             OsallistuuWorkshoppiin osws = iter.next();
-            if (os.getId() == osws.getOsallistuja() && ws.getId() == osws.getWorkshop())
+            if ((os == null || (os.getId() == osws.getOsallistuja())) && ((ws == null) || ws.getId() == osws.getWorkshop()))
                     poistot.add(osws);          
         }
         
         for (OsallistuuWorkshoppiin i: poistot)
             alkiot.remove(i);
-        
+        muutettu = true;
     }
 
     @Override
@@ -153,17 +159,19 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
                 OsallistuuWorkshoppiin osws = new OsallistuuWorkshoppiin();
                 osws.parse(s);
                 lisaaOsWs(osws);
+                muutettu = false;
             }
         } catch ( FileNotFoundException e ) {
             throw new SailoException("Ei pysty lukemma tiedostoa " + nimi);
         }
+        
     }
 
     /**
      * @param args ei käytössä
      */
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        // 
 
     }
 

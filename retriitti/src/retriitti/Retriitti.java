@@ -122,6 +122,18 @@ public class Retriitti {
         this.workshopit.lisaa(workshop);
     }
     
+    /**
+     * poistaa workshopin retriitistä
+     * @param wsnr workshopin id joka poistetaan
+     */
+    public void poistaWorkshop(int wsnr) {
+        if (wsnr > workshopit.getLkm()) return;
+        Workshop w = workshopit.anna(wsnr-1);
+        poistaOsWs(null, w);
+        workshopit.poista(w);
+        
+    }
+    
     
     /**
      * lisää osallistujalle workshop
@@ -234,5 +246,4 @@ public class Retriitti {
             workshop.tulosta(System.out);
         }
     }
-
 }
