@@ -163,7 +163,7 @@ public class RetriittiGUIController implements Initializable {
    
    
    private Retriitti retriitti;
-   private static Osallistuja apuOsallistuja;
+   
    
    
    
@@ -261,16 +261,25 @@ public class RetriittiGUIController implements Initializable {
    
    /**
     * hakee osallistujan tiedot listaan
-    * @param osnro osallistujan id
+    * @param osnr osallistujan id, joka aktivoidaan haun jälkeen
+    *   jos 0 niin aktivoidaan nykyinen jäsen
     */
-   private void hae(int osnro) {
+   private void hae(int osnr) {
+       int osnro = osnr;
+       if (osnro == 0) {
+           Osallistuja kohdalla = chooserOsallistujat.getSelectedObject();
+           if (kohdalla != null)  osnro = kohdalla.getId();
+       }
        chooserOsallistujat.clear();
-       
+       String ehto = hakuehto.getText();
        int index = 0;
+       int ci = 0;
        for (int i = 0; i < retriitti.getOsallistujia(); i++) {
            Osallistuja osallistuja = retriitti.annaOsallistuja(i);
-           if (osallistuja.getId()== osnro) index = i;
+           if (!osallistuja.getNimi().contains(ehto)) continue;
+           if (osallistuja.getId()== osnro) index = ci;
            chooserOsallistujat.add("" + osallistuja.getNimi(), osallistuja);
+           ci++;
        }
        chooserOsallistujat.setSelectedIndex(index);
    }
