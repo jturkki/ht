@@ -2,6 +2,7 @@ package retriitti;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Comparator;
 
 import fi.jyu.mit.ohj2.Mjonot;
 import kanta.HetuTarkistus;
@@ -330,6 +331,24 @@ public class Osallistuja implements Cloneable {
         return null;
     }
   
+    
+    /**
+     * vertaa osallistujia nimen perusteella
+     * @author jyrit
+     * @version 26.8.2022
+     *
+     */
+    public static class Vertailija implements Comparator<Osallistuja> {
+
+        @Override
+        public int compare(Osallistuja os1, Osallistuja os2) {
+
+            return os1.getNimi().compareToIgnoreCase(os2.getNimi());
+        }
+        
+    }
+    
+    
     /**
      * @param args ei käytetä
      */

@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -127,13 +128,13 @@ public class Osallistujat {
      * @return lista osallistujista
      */
     public Collection<Osallistuja> etsi(String ehto, int k) {
-        Collection<Osallistuja> lista = new ArrayList<Osallistuja>();
+        ArrayList<Osallistuja> lista = new ArrayList<Osallistuja>();
         for (int i=0; i< getLkm(); i++) {
             Osallistuja os = anna(i);
-            if (os.anna(k).contains(ehto))
+            if (os.anna(k).toUpperCase().contains(ehto.toUpperCase()))
                 lista.add(os);
         }
-            
+        Collections.sort(lista, new Osallistuja.Vertailija());    
         return lista;
     }
     
