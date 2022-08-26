@@ -33,35 +33,56 @@ import java.util.Scanner;
  * </pre>
  */
 public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshoppiin> {
-    
+
     private final ArrayList<OsallistuuWorkshoppiin> alkiot = new ArrayList<OsallistuuWorkshoppiin>();
-    
-   
-    
-    
+    private boolean muutettu = false;
+
+
+
     /**
      * Alustus OsallistumisetWorkshoppeihin
      */
     public OsallistumisetWorkshoppeihin() {
         //
     }
-    
-    
-        
+
+
+
     /**
      * lisää osallistujan osallistumisen workshoppiin tietorakenteeseen
      * @param osallistuminen joka lisätään tietorakenteeseen
      */
     public void lisaaOsWs(OsallistuuWorkshoppiin osallistuminen) {
         alkiot.add(osallistuminen);
+        muutettu = true;
+    }
+    
+    
+
+    /**
+     * @param os osallistuja jonka workshop poistetaan
+     * @param ws workshop joka poistetaan
+     */
+    public void poista(Osallistuja os, Workshop ws) {
+        Iterator<OsallistuuWorkshoppiin> iter = iterator();
+        ArrayList<OsallistuuWorkshoppiin> poistot = new ArrayList<OsallistuuWorkshoppiin>();
+        while (iter.hasNext()) {
+            OsallistuuWorkshoppiin osws = iter.next();
+            if (os.getId() == osws.getOsallistuja() && ws.getId() == osws.getWorkshop())
+                    poistot.add(osws);          
+        }
+        
+        for (OsallistuuWorkshoppiin i: poistot)
+            alkiot.remove(i);
+        
     }
 
     @Override
     public Iterator<OsallistuuWorkshoppiin> iterator() {
-        
+
         return alkiot.iterator();
     }
-    
+
     /**
      * antaa listan osallistujan workshoppien id:t
      * @param osallistuja jonka workshoppien id:t listataan
@@ -69,7 +90,7 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
      */
     public ArrayList<Integer> annaWSlistaus(Osallistuja osallistuja) {
         Iterator<OsallistuuWorkshoppiin> iter = iterator();
-        
+
         ArrayList<Integer> listaus = new ArrayList<Integer>();
         while (iter.hasNext()) {
             OsallistuuWorkshoppiin osws = iter.next();
@@ -77,8 +98,8 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
         }
         return listaus;
     }
-    
-    
+
+
     /**
      * palauttaa i:nnen OsallistuuWorkshoppiin
      * @param i OsallistuuWorkshoppiin indeksi
@@ -88,7 +109,7 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
         if ( i<0 || i>= alkiot.size()) throw new IndexOutOfBoundsException("Laitoin indeksi " + i);
         return alkiot.get(i);
     }
-    
+
     /**
      * Tallentaa workshoppien tiedot tiedostoon
      * Tiedot muodossa:
@@ -102,18 +123,21 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
      * @throws SailoException jos tallennus epäonnistuu
      */
     public void tallenna(String tiedNimi) throws SailoException {
-        File fileNimi = new File(tiedNimi);
-        try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/osallistuu.txt", false))){
-            for (int i=0; i < alkiot.size(); i++) {
-                OsallistuuWorkshoppiin osws = anna(i);
-                osws.tulosta(fo);
+        if (muutettu) {
+            File fileNimi = new File(tiedNimi);
+            try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/osallistuu.txt", false))){
+                for (int i=0; i < alkiot.size(); i++) {
+                    OsallistuuWorkshoppiin osws = anna(i);
+                    osws.tulosta(fo);
+                    muutettu = false;
+                }
+            } catch (FileNotFoundException e) {
+                throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
             }
-        } catch (FileNotFoundException e) {
-            throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
         }
     }
-    
-    
+
+
     /**
      * lukee osallistumiset workshoppeihin tiedostosta
      * @param tiedNimi hakemiston nimi jossa tiedot talletettuna
@@ -122,7 +146,7 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
     public void lueTiedostosta(String tiedNimi) throws SailoException {
         String nimi = tiedNimi + "/osallistuu.txt";
         File fnimi = new File(nimi);
-        
+
         try (Scanner fi = new Scanner(new FileInputStream(fnimi))) {
             while (fi.hasNext()) {
                 String s = fi.nextLine();
@@ -134,13 +158,13 @@ public class OsallistumisetWorkshoppeihin implements Iterable<OsallistuuWorkshop
             throw new SailoException("Ei pysty lukemma tiedostoa " + nimi);
         }
     }
-    
+
     /**
      * @param args ei käytössä
      */
     public static void main(String[] args) {
-    // TODO Auto-generated method stub
-    
+        // TODO Auto-generated method stub
+
     }
 
 }

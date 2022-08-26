@@ -136,7 +136,7 @@ public class RetriittiGUIController implements Initializable {
      * Osallistujan poistaminen workshopista
      */
    @FXML private void handlePoistaOsallistujaltaWorkshop() {
-        Dialogs.showMessageDialog("Tarttis poistaa workshop. Vaan eipä toimi vielä");
+        poistaOsWs();
     }
 
    /**
@@ -214,7 +214,7 @@ public class RetriittiGUIController implements Initializable {
    
    private void naytaWorkshop(Workshop ws) {
        String[] rivi = ws.toString().split("\\|");
-       tableWorkshopit.add(ws, rivi[1], rivi[2], rivi[3], rivi[4] );
+       tableWorkshopit.add(ws, rivi[1], rivi[2], rivi[3], rivi[4], rivi[5], rivi[6], rivi[7] );
    }
                
    
@@ -347,6 +347,17 @@ public class RetriittiGUIController implements Initializable {
            retriitti.lisaaOsWs(uusi);
            hae(osallistujaKohdalla.getId());
        }
+   }
+   
+   
+   private void poistaOsWs() {
+       Osallistuja kohdalla = chooserOsallistujat.getSelectedObject();
+       int rivi = tableWorkshopit.getRowNr();
+       if (rivi < 0) return;
+       Workshop osallistuminen = tableWorkshopit.getObject();
+       if (osallistuminen == null ) return;
+       retriitti.poistaOsWs(kohdalla, osallistuminen);
+       hae(kohdalla.getId());
    }
    
    

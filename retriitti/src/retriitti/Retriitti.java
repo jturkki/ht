@@ -131,6 +131,16 @@ public class Retriitti {
         this.osallistumiset.lisaaOsWs(osallistuminen);
     }
     
+    
+    /**
+     * @param os osallistuja jolta poistetaan osallistuminen workshoppiin 
+     * @param ws workshop joka poistetaan osallistujalta
+     */
+    public void poistaOsWs(Osallistuja os, Workshop ws) {
+        osallistumiset.poista(os, ws);
+        
+    }
+    
     /**
      * tallentaa retriitin tiedot tiedostoihin
      * @param tnimi hakemiston nimi johon tallennetaan
@@ -224,11 +234,5 @@ public class Retriitti {
             workshop.tulosta(System.out);
         }
     }
-
-
-   
-
-
-   
 
 }

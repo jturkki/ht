@@ -19,7 +19,7 @@ public class Workshopit {
 
     private int lkm = 0;
     private Workshop[] alkiot;
-
+    private boolean muutettu = false;
 
     /**
      * Oletusmuodostaja
@@ -63,6 +63,7 @@ public class Workshopit {
         if (lkm >= alkiot.length) alkiot = Arrays.copyOf(alkiot, lkm + 10);
         alkiot[lkm] = workshop;
         lkm++;
+        muutettu = true;
     }
 
     /**
@@ -89,18 +90,21 @@ public class Workshopit {
      * @throws SailoException jos tallennus epäonnistuu
      */
     public void tallenna(String tiedNimi) throws SailoException {
-        File fileNimi = new File(tiedNimi);
-        try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/workshopit.txt", false))){
-            for (int i=0; i<getLkm(); i++) {
-                Workshop ws = anna(i);
-                ws.tulosta(fo);
+        if (muutettu) {
+            File fileNimi = new File(tiedNimi);
+            try (PrintStream fo = new PrintStream(new FileOutputStream(fileNimi + "/workshopit.txt", false))){
+                for (int i=0; i<getLkm(); i++) {
+                    Workshop ws = anna(i);
+                    ws.tulosta(fo);
+                    muutettu = false;
+                }
+            } catch (FileNotFoundException e) {
+                throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
             }
-        } catch (FileNotFoundException e) {
-            throw new SailoException("Tiedosto " + fileNimi.getAbsolutePath() + " ei löydy");
         }
     }
 
-     
+
     /**
      * lukee workshoppien tiedot tiedostosta
      * @param tiedNimi hakemiston nimi
@@ -109,7 +113,7 @@ public class Workshopit {
     public void lueTiedostosta(String tiedNimi) throws SailoException {
         String nimi = tiedNimi + "/workshopit.txt";
         File fnimi = new File(nimi);
-        
+
         try (Scanner fi = new Scanner(new FileInputStream(fnimi))) {
             while (fi.hasNext()) {
                 String s = fi.nextLine();
@@ -120,7 +124,7 @@ public class Workshopit {
         } catch (FileNotFoundException e) {
             throw new SailoException("Ei saa luettua tiedostoa " + nimi);
         }
-        
+
     }
 
     /**
@@ -137,7 +141,7 @@ public class Workshopit {
 
         workshopit.lisaa(homma1);
         workshopit.lisaa(homma2);
-      
+
 
         System.out.println("=============== Workshopit testi =========");
 
