@@ -113,6 +113,14 @@ public class Retriitti {
         this.osallistujat.lisaa(osallistuja);
     }
     
+    /**
+     * @param osPois osallistuja joka poistetaan
+     */
+    public void poistaOsallistuja(Osallistuja osPois) {
+        poistaOsWs(osPois, null);
+        osallistujat.poista(osPois);  
+    }
+    
     
     /**
      * lisaa workshopin retriittiin
@@ -246,4 +254,7 @@ public class Retriitti {
             workshop.tulosta(System.out);
         }
     }
+
+
+   
 }

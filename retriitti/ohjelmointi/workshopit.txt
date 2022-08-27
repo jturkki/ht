@@ -2,3 +2,4 @@
 2| Kuikuilu| Kellari| 8| Pepe| 9| 12.11.2022| 10:00
 3| Levitointi| Katto| 8| Albert| 9| 12.11.2022| 9:00
 4| Ämpyily| Kellari| 2| Uuno| 12| 13.11.2022| 12:00
+5| Haahuilu| tori| 100| Heka| 5| 12.12.2022| 8:15

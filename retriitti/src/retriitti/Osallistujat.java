@@ -75,6 +75,25 @@ public class Osallistujat {
         muutettu = true;
     }
     
+
+    /**
+     * @param osPois osallistuja joka poistetaan
+     */
+    public void poista(Osallistuja osPois) {
+        
+        for (int i=0; i<lkm; i++) {
+            if (alkiot[i].getId() == osPois.getId()) {
+                for (int j=i; j<lkm-1; j++)
+                    alkiot[j] = alkiot[j+1];
+            break;
+            }
+           
+        }
+        alkiot[lkm-1] = null;
+        lkm--;
+        muutettu = true;
+    }
+    
     
     /**
      * Korvaa osallistujan tietorakenteessa. Ottaa osallistujan omistukseensa.
@@ -223,5 +242,6 @@ public class Osallistujat {
     
     
     }
+
 
 }
