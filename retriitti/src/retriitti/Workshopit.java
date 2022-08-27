@@ -57,6 +57,8 @@ public class Workshopit {
      * ws.lisaa(ws1); ws.getLkm() === 4;
      * ws.lisaa(ws1); ws.getLkm() === 5;
      * ws.lisaa(ws1); ws.getLkm() === 6;
+     * ws.poista(ws1); ws.getLkm() === 5;
+     * ws.poista(ws1); ws.getLkm() === 4;
      * </pre>
      */
     public void lisaa(Workshop workshop) {

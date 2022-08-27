@@ -65,7 +65,9 @@ public class Osallistujat {
      * osallistujat.anna(3) === aku1; #THROWS IndexOutOfBoundsException 
      * osallistujat.lisaa(aku1); osallistujat.getLkm() === 4;
      * osallistujat.lisaa(aku1); osallistujat.getLkm() === 5;
-     * osallistujat.lisaa(aku1);  
+     * osallistujat.lisaa(aku1); osallistujat.getLkm() === 6;
+     * osallistujat.poista(aku1); osallistujat.getLkm() === 5;
+     * osallistujat.poista(aku1); osallistujat.getLkm() === 4;
      * </pre>
      */
     public void lisaa(Osallistuja osallistuja) {

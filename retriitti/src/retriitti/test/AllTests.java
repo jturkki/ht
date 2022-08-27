@@ -6,10 +6,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @SuppressWarnings("javadoc")
 @RunWith(Suite.class)
-@SuiteClasses({ OsallistujaTest.class, OsallistujatTest.class,
-        OsallistumisetWorkshoppeihinTest.class,
-        OsallistuuWorkshoppiinTest.class, RetriittiTest.class,
-        WorkshopitTest.class, WorkshopTest.class })
+@SuiteClasses({ retriitti.test.OsallistujaTest.class, retriitti.test.OsallistujatTest.class,
+    retriitti.test.OsallistumisetWorkshoppeihinTest.class,
+    retriitti.test.OsallistuuWorkshoppiinTest.class, retriitti.test.RetriittiTest.class,
+    retriitti.test.WorkshopitTest.class, retriitti.test.WorkshopTest.class })
 public class AllTests {
     //
 }

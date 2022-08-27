@@ -30,12 +30,15 @@ import java.util.Collection;
  * OsallistuuWorkshoppiin o1 = new OsallistuuWorkshoppiin();
  * OsallistuuWorkshoppiin o2 = new OsallistuuWorkshoppiin();
  * OsallistuuWorkshoppiin o3 = new OsallistuuWorkshoppiin();
+ * OsallistuuWorkshoppiin o4 = new OsallistuuWorkshoppiin();
  * o1.parse("1|1|1");
  * o2.parse("2|1|2");
  * o3.parse("3|2|1");
+ * o4.parse("4|2|2");
  * retriitti.lisaaOsWs(o1);
  * retriitti.lisaaOsWs(o2);
  * retriitti.lisaaOsWs(o3);
+ * retriitti.lisaaOsWs(o4);
  * retriitti.annaOsallistuja(1) === aku2;
  * retriitti.annaWorkshop(1) === homma2;
  * #import java.util.ArrayList;
@@ -43,6 +46,17 @@ import java.util.Collection;
  * ArrayList<Integer> lista = new ArrayList<Integer>();
  * lista = retriitti.annaWorkshopit(aku);
  * lista.toString() === "[1, 2]";
+ * retriitti.poistaOsWs(aku, homma2);
+ * lista = retriitti.annaWorkshopit(aku);
+ * lista.toString() === "[1]";
+ * lista = retriitti.annaWorkshopit(aku2);
+ * lista.toString() === "[1, 2]";
+ * retriitti.poistaWorkshop(2);
+ * lista = retriitti.annaWorkshopit(aku2);
+ * lista.toString() === "[1]";
+ * retriitti.getWorkshoppeja() === 1;
+ * retriitti.poistaOsallistuja(aku2);
+ * retriitti.getOsallistujia() === 1;
  * </pre>
  */
 public class Retriitti {
