@@ -1,5 +1,5 @@
-2| Kokko| Kake| 211277-1232| jsdlfkj| lsakjd| djkj| jjsalkf
-3| Penala| Pena| 111170-432Y| laskjdf| jfj| ljk| lkj
-4| Heinä| Hattu| 211299-111B| Pelto 4| 11221| 134343| alsfkj
+2| Kokko| Kake| 211277-1232| Kokkokatu 3| 11111 Kokkola| 055222999| kake@kokkola.fi
+3| Penala| Pena| 111170-432Y| Turhakatu 4| 00022 Turku| 033446667| pena@tollo.fi
+4| Heinä| Hattu| 211299-111B| Pelto 4| 11221 Pellossa| 044001122| heinä@hattu.fi
 5| Aalto| Bertta| 111299-2114| Jokukatu 3| 00011 Jokula| 044332211| joku@jokula.fi
 6| Aalto| Cee| 221199-131U| Jokukatu 9| 00110 Jokula| 030554433| cee@jokula.fi

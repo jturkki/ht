@@ -3,9 +3,11 @@ package fxRetriitti;
 
 
 
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import fi.jyu.mit.fxgui.ComboBoxChooser;
@@ -13,10 +15,12 @@ import fi.jyu.mit.fxgui.Dialogs;
 import fi.jyu.mit.fxgui.ListChooser;
 
 import fi.jyu.mit.fxgui.StringGrid;
+import fi.jyu.mit.fxgui.TextAreaOutputStream;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import retriitti.Osallistuja;
 import retriitti.OsallistuuWorkshoppiin;
@@ -150,7 +154,8 @@ public class RetriittiGUIController implements Initializable {
      * Käsitellään tulostuskäsky
      */
     @FXML private void handleTulosta() {
-        tulosta();
+        TulostaViewGUIController tulostusCtrl = TulostaViewGUIController.tulosta(null); 
+             tulostaValitut(tulostusCtrl.getTextArea()); 
     }
 
 
@@ -236,11 +241,7 @@ public class RetriittiGUIController implements Initializable {
         return true;
     }
 
-    private void tulosta() {
-        Dialogs.showMessageDialog("Tästä aukeaa oma tulostusikkuna");
-    }
-
-
+  
     /**
      * Avaa retriitin tiedot lukemalla ne tiedostoista
      */
@@ -382,5 +383,37 @@ public class RetriittiGUIController implements Initializable {
         retriitti.poistaOsWs(kohdalla, osallistuminen);
         hae(kohdalla.getId());
     }
-
+    
+   
+    /**
+     * Tulostaa jäsenen tiedot
+     * @param os tietovirta johon tulostetaan
+     * @param osallistuja tulostettava osallistuja
+     */
+    private void tulosta(PrintStream os, Osallistuja osallistuja) {
+        os.println("----------------------------------------------");
+        osallistuja.tulosta(os);
+        os.println("----------------------------------------------");
+        
+            List<Integer> wst = retriitti.annaWorkshopit(osallistuja);
+            for (Integer i: wst) {
+                Workshop workshop = retriitti.annaWorkshop(i.intValue()-1);     
+                workshop.tulosta(os); 
+        }      
+    }
+    
+    
+    /**
+     * Tulostaa listassa olevat jäsenet tekstialueeseen
+     * @param text alue johon tulostetaan
+     */
+    private void tulostaValitut(TextArea text) {
+        try (PrintStream os = TextAreaOutputStream.getTextPrintStream(text)) {
+            os.println("Tulostetaan kaikki osallistujat");
+            for (Osallistuja osall: chooserOsallistujat.getObjects()) { 
+                tulosta(os, osall);
+                os.println("\n\n");
+            }
+        }
+    }
 }
