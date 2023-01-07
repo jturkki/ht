@@ -1,6 +1,5 @@
-# pohja
+# Ohjelmointiretriittirekisteri
 
-Pohja kevään 2022 harjoitustöiden GIT-repoille
-
-Lue käyttöohjeet TIMistä: <https://tim.jyu.fi/view/kurssit/tie/ohj2/tyokalut/git/ohj2git#fork>
-
+Ohjelmapitää kirjaa retriitin osallistujista, workshopeista ja mille workshopille kukin osallistuja osallistuu.
+Osallistujan voi lisätä ja poistaa, workshopin voi lisätä ja poistaa, ja osallistujan voi lisätä workshoppiiin
+tai poistaa siltä.
